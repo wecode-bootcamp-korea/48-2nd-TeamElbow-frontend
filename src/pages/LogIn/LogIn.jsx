@@ -29,7 +29,7 @@ const LogIn = () => {
         console.log(result);
         // if (result.message === 'SUCCESS') {
         //   localStorage.setItem('token', result.accessToken);
-        //   navigate('/post-list');
+        //   navigate('/');
         // } else {
         //   alert('이메일 또는 비밀번호가 일치하지 않습니다.');
         // }
@@ -42,12 +42,14 @@ const LogIn = () => {
         <h1>로그인</h1>
         <input
           id="memberId"
+          value={userInfo.memberId}
           onChange={handleInput}
           type="text"
           placeholder="아이디를 입력해주세요."
         />
         <input
           id="memberPassword"
+          value={userInfo.memberPassword}
           onChange={handleInput}
           type="password"
           placeholder="비밀번호를 입력해주세요."
