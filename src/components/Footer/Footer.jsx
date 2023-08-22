@@ -11,14 +11,14 @@ const Footer = () => {
           </li>
         ))}
       </ul>
-      <div className="companyInfo">
-        <p className="companyName contents">엘보우시네마</p>
-        <p className="adress contents">
+      <div className="companyInfo contents">
+        <p className="companyName">엘보우시네마</p>
+        <p className="adress">
           <span>주소 : 서울특별시 강남구 강남대로 000, 엘보우시네마 |</span>
           <span>대표이사 : 전동민 |</span>
           <span>사업자 등록번호 : 123-45-78945</span>
         </p>
-        <p className="adress contents">
+        <p className="adress">
           <span>1600-1600 |</span>
           <span>help@elbowcinema.co.kr |</span>
           <span>
@@ -26,7 +26,7 @@ const Footer = () => {
             개인정보보호 책임자 : 전민성
           </span>
         </p>
-        <p className="adress contents">
+        <p className="adress">
           <span>© ELBOW CINEMA. All Rights Reserved</span>
         </p>
       </div>
