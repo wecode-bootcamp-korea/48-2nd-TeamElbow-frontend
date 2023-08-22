@@ -39,7 +39,7 @@
       width: 100%;
       margin-top: 30px;
       border-radius: 5px;
-      border: none;
+      border: 1px solid $theme-color;
       padding: 18px;
       color: $white;
       font-size: 16px;
@@ -61,10 +61,14 @@
       border-radius: 5px;
       border: 1px solid $theme-color;
       padding: 18px;
-      color: $theme-color;
-      font-size: 16px;
-      font-weight: bold;
       background-color: $white;
+
+      a {
+        color: $theme-color;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+      }
     }
   }
 }
