@@ -114,7 +114,7 @@ const SignUp = () => {
     userInfo.memberBirthday.trim() !== '';
 
   return (
-    <div className="contents">
+    <div className="contents signup">
       <h1>회원가입</h1>
       <Link to="/login" className="goToLogIn">
         이미 계정이 있으신가요?
