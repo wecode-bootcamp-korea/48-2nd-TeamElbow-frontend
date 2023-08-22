@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.nav {
+  width: 100%;
+  background-color: $theme-color;
+
+  &.fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      margin-right: 3rem;
+      position: relative;
+      padding: 0.8rem 0;
+      color: $white;
+      font-size: 1.1rem;
+      font-weight: 400;
+      cursor: pointer;
+
+      &:hover:after {
+        content: '';
+        position: absolute;
+        width: calc(100% + 1.2rem);
+        left: 0;
+        bottom: 0;
+        border-bottom: 4px solid #b4ebff;
+      }
+    }
+  }
+}
