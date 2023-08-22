@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  border-top: 1px solid $black;
+
+  .footerMenu {
+    display: flex;
+    font-size: 13px;
+
+    .footerMenuList {
+      padding: 25px 8px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .companyInfo {
+    border-top: 1px solid #eaeaea;
+    padding-top: 20px;
+    font-size: 12px;
+
+    .companyName {
+      font-weight: bold;
+      padding-bottom: 12px;
+    }
+    .adress {
+      margin-top: 8px;
+
+      span {
+        padding-right: 5px;
+      }
+    }
+  }
+}
