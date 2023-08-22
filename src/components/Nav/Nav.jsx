@@ -15,7 +15,6 @@ const Nav = () => {
 
   const [scrollY, setScrollY] = useState(0);
   const [scrollActive, setScrollActive] = useState(false);
-  const [navFixed, setNavFixed] = useState(false);
 
   const scrollFixed = () => {
     if (scrollY > 100) {
