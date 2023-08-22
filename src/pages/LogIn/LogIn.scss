@@ -1,0 +1,70 @@
+@import '../../styles/variables.scss';
+
+.contents {
+  .logInWrap {
+    width: 400px;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .goToSignUp {
+      font-size: 13px;
+      text-align: center;
+      padding: 10px 0 50px;
+      color: $theme-color;
+    }
+
+    input {
+      margin: 8px 0 0 0;
+      padding: 10px;
+      border: 1px solid $grey88;
+      border-radius: 5px;
+
+      &::placeholder {
+        color: $grey99;
+      }
+
+      &:focus {
+        outline: 1px solid $theme-color;
+      }
+    }
+    .logIn {
+      width: 100%;
+      margin-top: 30px;
+      border-radius: 5px;
+      border: none;
+      padding: 18px;
+      color: $white;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: $theme-color;
+    }
+    p {
+      border-top: 1px solid $grey88;
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      font-size: 12px;
+      font-weight: bold;
+      color: $grey66;
+    }
+    .goToSignUp {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid $theme-color;
+      padding: 18px;
+      color: $theme-color;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: $white;
+    }
+  }
+}
