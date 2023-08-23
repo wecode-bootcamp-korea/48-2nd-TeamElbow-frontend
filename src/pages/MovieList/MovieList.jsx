@@ -1,7 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './MovieList.scss';
+import '../../styles/variables.scss';
+import List from '../../components/List/List';
 
 const MovieList = () => {
-  return <div></div>;
+  return (
+    <div className="movieList">
+      <div className="contents">
+        <h2 className="title">무비차트</h2>
+        <div className="sortTab">
+          <button type="button" class="btnSort on" sort-type="rate">
+            예매율순
+          </button>
+          <button type="button" class="btnSort" sort-type="title">
+            가나다순
+          </button>
+        </div>
+        <div className="listWrap">
+          <List />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MovieList;
