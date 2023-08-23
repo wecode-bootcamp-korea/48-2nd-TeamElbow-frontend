@@ -9,12 +9,16 @@ const LogIn = () => {
     memberId: '',
     memberPassword: '',
   });
+
   const handleInput = e => {
     const { value, id } = e.target;
     setUserInfo(prev => ({ ...prev, [id]: value }));
   };
-  const onClick = () => {
-    fetch('주소', {
+
+  const handleLogin = e => {
+    e.preventDefault();
+
+    fetch('http://10.58.52.244:3000/member/signin', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -26,19 +30,18 @@ const LogIn = () => {
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
-        // if (result.message === 'SUCCESS') {
-        //   localStorage.setItem('token', result.accessToken);
-        //   navigate('/');
-        // } else {
-        //   alert('이메일 또는 비밀번호가 일치하지 않습니다.');
-        // }
+        if (result.accessToken) {
+          localStorage.setItem('token', result.accessToken);
+          navigate('/');
+        } else {
+          alert('이메일 또는 비밀번호가 일치하지 않습니다.');
+        }
       });
   };
 
   return (
-    <div className="contents">
-      <form className="logInWrap">
+    <div className="logIn contents">
+      <form className="logInWrap" onSubmit={handleLogin}>
         <h1>로그인</h1>
         <input
           id="memberId"
@@ -54,9 +57,7 @@ const LogIn = () => {
           type="password"
           placeholder="비밀번호를 입력해주세요."
         />
-        <button className="logIn" onClick={onClick}>
-          로그인
-        </button>
+        <button className="logIn">로그인</button>
         <p>아직 회원이 아니신가요?</p>
         <button className="goToSignUp">
           <Link to="/sign-up">엘보우시네마 회원가입 하기</Link>
