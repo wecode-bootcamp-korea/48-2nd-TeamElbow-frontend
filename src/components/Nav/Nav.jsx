@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Nav.scss';
-import '../../styles/variables.scss';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -14,30 +13,23 @@ const Nav = () => {
   };
 
   const [scrollY, setScrollY] = useState(0);
-  const [scrollActive, setScrollActive] = useState(false);
 
-  const scrollFixed = () => {
-    if (scrollY > 100) {
-      setScrollY(window.scrollY);
-      setScrollActive(true);
-    } else {
-      setScrollY(window.scrollY);
-      setScrollActive(false);
-    }
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
   };
 
+  const isNavFixed = scrollY > 100;
+
   useEffect(() => {
-    const scrollListener = () => {
-      window.addEventListener('scroll', scrollFixed);
-    };
-    scrollListener();
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.removeEventListener('scroll', scrollFixed);
+      window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, []);
 
   return (
-    <div className={`nav ${scrollActive ? 'fixed' : ''}`}>
+    <div className={`nav ${isNavFixed ? 'fixed' : ''}`}>
       <div className="contents">
         <ul>
           <li onClick={goHome}>영화</li>
