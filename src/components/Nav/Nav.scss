@@ -3,6 +3,7 @@
 .nav {
   width: 100%;
   background-color: $theme-color;
+  z-index: 3;
 
   &.fixed {
     position: sticky;
