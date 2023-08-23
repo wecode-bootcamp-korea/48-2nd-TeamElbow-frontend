@@ -22,17 +22,6 @@ const SignUp = () => {
     memberBirthday,
   } = userInfo;
 
-  const handleInputGender = e => {
-    setMemberGender(e.target.value);
-  };
-
-  const [idMessage, setIdMessage] = useState('');
-  const [passwordMessage, setPasswordMessage] = useState('');
-  const [nameMessage, setNameMessage] = useState('');
-  const [emailMessage, setEmailMessage] = useState('');
-  const [phoneMessage, setPhoneMessage] = useState('');
-  const [birthMessage, setBirthMessage] = useState('');
-
   const onClickSignup = e => {
     e.preventDefault();
 
