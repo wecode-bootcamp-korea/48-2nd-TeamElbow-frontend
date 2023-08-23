@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './MovieList.scss';
 import '../../styles/variables.scss';
 import List from '../../components/List/List';
@@ -17,8 +16,10 @@ const MovieList = () => {
             가나다순
           </button>
         </div>
-        <div className="listWrap">
-          <List />
+        <div className="listContainer">
+          <ol className="listWrap">
+            <List />
+          </ol>
         </div>
       </div>
     </div>

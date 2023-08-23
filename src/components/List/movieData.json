@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "movieTitle": "악마는 구라다를 입는다",
+    "bookingRatePercent": "20",
+    "movieReleaseDate": "2023.08.23",
+    "moviePosterImageUrl": "images/img_movie1.png"
+  },
+  {
+    "id": 2,
+    "movieTitle": "티몬이 품바 찾으러 떠나는 얘기",
+    "bookingRatePercent": "5",
+    "movieReleaseDate": "2023.08.20",
+    "moviePosterImageUrl": "images/img_movie2.png"
+  },
+  {
+    "id": 3,
+    "movieTitle": "AI; ChatGPT",
+    "bookingRatePercent": "10",
+    "movieReleaseDate": "2023.08.19",
+    "moviePosterImageUrl": "images/img_movie3.png"
+  },
+  {
+    "id": 4,
+    "movieTitle": "엘보우 더 스파이",
+    "bookingRatePercent": "12",
+    "movieReleaseDate": "2023.07.20",
+    "moviePosterImageUrl": "images/img_movie4.png"
+  },
+  {
+    "id": 5,
+    "movieTitle": "야근이 끝나고 테헤란로에 나홀로",
+    "bookingRatePercent": "10",
+    "movieReleaseDate": "2023.04.23",
+    "moviePosterImageUrl": "images/img_movie5.png"
+  },
+  {
+    "id": 6,
+    "movieTitle": "돌아온 거미총각",
+    "bookingRatePercent": "9",
+    "movieReleaseDate": "2023.08.03",
+    "moviePosterImageUrl": "images/img_movie6.png"
+  },
+  {
+    "id": 7,
+    "movieTitle": "깨끗하게 맑게 자신있게",
+    "bookingRatePercent": "14",
+    "movieReleaseDate": "2023.07.01",
+    "moviePosterImageUrl": "images/img_movie7.png"
+  },
+  {
+    "id": 8,
+    "movieTitle": "시은아빠와 모나리자",
+    "bookingRatePercent": "1.2",
+    "movieReleaseDate": "2023.07.10",
+    "moviePosterImageUrl": "images/img_movie8.png"
+  },
+  {
+    "id": 9,
+    "movieTitle": "평양냉면 좋아하면 힙한거래",
+    "bookingRatePercent": "0.5",
+    "movieReleaseDate": "2023.07.30",
+    "moviePosterImageUrl": "images/img_movie9.png"
+  },
+  {
+    "id": 10,
+    "movieTitle": "퇴근길 9호선 지옥철에서 일어난일",
+    "bookingRatePercent": "14",
+    "movieReleaseDate": "2023.08.04",
+    "moviePosterImageUrl": "images/img_movie10.png"
+  },
+  {
+    "id": 11,
+    "movieTitle": "난 슬플때 춤을춰",
+    "bookingRatePercent": "0.9",
+    "movieReleaseDate": "2023.05.26",
+    "moviePosterImageUrl": "images/img_movie11.png"
+  },
+  {
+    "id": 12,
+    "movieTitle": "양 한마리 사세요",
+    "bookingRatePercent": "0.5",
+    "movieReleaseDate": "2023.06.27",
+    "moviePosterImageUrl": "images/img_movie12.png"
+  },
+  {
+    "id": 13,
+    "movieTitle": "술래잡기",
+    "bookingRatePercent": "0.7",
+    "movieReleaseDate": "2023.04.27",
+    "moviePosterImageUrl": "images/img_movie13.png"
+  }
+]
