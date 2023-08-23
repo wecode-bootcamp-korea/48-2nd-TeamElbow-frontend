@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './SignUp.scss';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     memberId: '',
     memberPassword: '',
@@ -10,8 +12,8 @@ const SignUp = () => {
     memberPhonenumber: '',
     memberEmail: '',
     memberBirthday: '',
+    memberGender: '',
   });
-  const [memberGender, setMemberGender] = useState('');
 
   const {
     memberId,
@@ -20,29 +22,24 @@ const SignUp = () => {
     memberPhonenumber,
     memberEmail,
     memberBirthday,
+    memberGender,
   } = userInfo;
 
   const onClickSignup = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.244:3000/member/signup', {
+    fetch('API주소', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({
-        memberId,
-        memberEmail,
-        memberPassword,
-        memberName,
-        memberPhonenumber,
-        memberBirthday,
-        memberGender,
-      }),
+      body: JSON.stringify(userInfo),
     })
       .then(response => response.json())
       .then(result => {
-        console.log(result);
+        if (result.message === 'CreateMember') {
+          navigate('/login');
+        }
       });
   };
 
@@ -56,8 +53,9 @@ const SignUp = () => {
     memberPassword.length >= 8 &&
     /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(memberPassword);
   const isNameValid = memberName.length >= 2;
-  const isPhonenumberValid =
-    /^(010|011|016|017|018|019)-[0-9]{3,4}-[0-9]{4}$/.test(memberPhonenumber);
+  const isPhonenumberValid = /^01[0-9]-[0-9]{4}-[0-9]{4}$/.test(
+    memberPhonenumber,
+  );
   const isEmailValid =
     /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/.test(
       memberEmail,
@@ -144,7 +142,7 @@ const SignUp = () => {
         </div>
         <button
           onClick={onClickSignup}
-          className="signUp"
+          className="signUpBtn"
           disabled={!isInputValid}
         >
           회원가입
