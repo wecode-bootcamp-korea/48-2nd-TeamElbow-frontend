@@ -1,12 +1,13 @@
 @import './variables.scss';
+
 @font-face {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   color: $primary-color;
 }
 
