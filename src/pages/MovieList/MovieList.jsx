@@ -1,6 +1,5 @@
 import React from 'react';
 import './MovieList.scss';
-import '../../styles/variables.scss';
 import List from '../../components/List/List';
 
 const MovieList = () => {

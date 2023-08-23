@@ -11,7 +11,6 @@ import MovieList from './pages/MovieList/MovieList';
 import SignUp from './pages/SignUp/SignUp';
 import MyTicket from './pages/MyTicket/MyTicket';
 import Payments from './pages/Payments/Payments';
-import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
