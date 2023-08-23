@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.scss';
 
-const Header = props => {
+const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const navigate = useNavigate();
