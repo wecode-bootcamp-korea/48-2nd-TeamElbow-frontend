@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
 import LogIn from './pages/LogIn/LogIn';
 import Booking from './pages/Booking/Booking';
 import BookingDone from './pages/BookingDone/BookingDone';
@@ -12,6 +15,8 @@ import Payments from './pages/Payments/Payments';
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
+      <Nav />
       <Routes>
         <Route path="/" element={<MovieList />} />
         <Route path="/login" element={<LogIn />} />
@@ -22,6 +27,7 @@ const Router = () => {
         <Route path="/my-ticket" element={<MyTicket />} />
         <Route path="/payments" element={<Payments />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
