@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Header.scss';
+import React from 'react';
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
