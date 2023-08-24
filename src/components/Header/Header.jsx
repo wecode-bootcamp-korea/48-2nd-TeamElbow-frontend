@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.scss';
 
@@ -37,17 +37,18 @@ const Header = () => {
   // TODO: 핵심 기능 구현 후 추가로 구현할 것
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = setIsLogin(isLoggedIn);
+      const isLoggedIn = !!localStorage.getItem('authToken');
+      setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
       if (isLoggedIn && redirectPath) {
         navigate(redirectPath);
         sessionStorage.removeItem('redirectPath');
       }
-
-      checkLoginStatus();
     };
-  }, []);
+
+    checkLoginStatus();
+  }, [navigate]);
 
   return (
     <div className="header">
