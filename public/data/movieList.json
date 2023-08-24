@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "ageall": "19세",
+    "movieName": "오펜하이머는 얼마나 좋았을까"
+  },
+  {
+    "id": 2,
+    "ageall": "15세",
+    "movieName": "시멘트 유토피아"
+  },
+  {
+    "id": 3,
+    "ageall": "15세",
+    "movieName": "마스크보이"
+  },
+  {
+    "id": 4,
+    "ageall": "19세",
+    "movieName": "너튜브"
+  },
+  { "id": 5, "ageall": "15세", "movieName": "한강의 무코리타" }
+]

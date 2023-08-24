@@ -1,0 +1,140 @@
+@import '../../styles/variables.scss';
+
+.booking {
+  margin: 50px 0;
+  .contents {
+    height: 700px;
+    border: 1px solid $grey88;
+
+    .listName {
+      font-weight: bold;
+      font-size: 18px;
+      padding: 20px 0 20px 15px;
+      border-bottom: 1px solid $grey88;
+    }
+
+    .movieListStyle {
+      border: 1px solid $grey88;
+      height: 642px;
+    }
+
+    .bookingTop {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: $theme-color;
+
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: $white;
+      }
+
+      .bookingNavi {
+        border: 1px solid $white;
+        border-radius: 4px;
+        background-color: $white;
+        color: $theme-color;
+        font-size: 12px;
+        padding: 5px 15px;
+      }
+    }
+    .selectBox {
+      display: flex;
+
+      li {
+        .listBtn {
+          width: 100%;
+          padding: 20px 15px;
+          text-align: left;
+          background-color: $white;
+          border: 2px solid $white;
+
+          &:hover {
+            background-color: #f0f0ff;
+          }
+
+          &:active {
+            border: 2px solid $theme-color;
+            background-color: $white;
+          }
+        }
+      }
+      .movieList {
+        width: 350px;
+
+        span {
+          margin-right: 15px;
+          background-color: yellowgreen;
+          font-size: 11px;
+          padding: 5px;
+          color: $white;
+          border-radius: 5px;
+        }
+      }
+
+      .dateList {
+        width: 120px;
+        background-color: #f7f7f7;
+        p {
+          background-color: $white;
+        }
+        li {
+          .listBtn {
+            background-color: #f7f7f7;
+            border: 2px solid #f7f7f7;
+            &:hover {
+              background-color: #f0f0ff;
+            }
+
+            &:active {
+              border: 2px solid $theme-color;
+              background-color: #f7f7f7;
+            }
+          }
+        }
+      }
+
+      .timeList {
+        width: 300px;
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin: 40px;
+        }
+
+        li {
+          margin-bottom: 20px;
+          .timeListBtn {
+            padding: 15px 10px;
+            background-color: $white;
+            border: 1px solid $grey88;
+            border-radius: 5px;
+
+            &:hover {
+              background-color: #f0f0ff;
+            }
+
+            &:active {
+              border: 2px solid $theme-color;
+              background-color: $white;
+            }
+          }
+        }
+      }
+
+      .selectedMovie {
+        width: 330px;
+
+        .infoSelectMoive {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
