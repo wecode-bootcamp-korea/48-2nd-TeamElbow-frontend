@@ -65,6 +65,27 @@
       .movieList {
         width: 350px;
 
+        .sortCategory {
+          display: flex;
+          font-size: 13px;
+          padding: 15px 20px 0 20px;
+
+          p {
+            color: $grey66;
+            margin: 0 15px 10px 0;
+            padding: 5px 8px;
+            border-bottom: 1px solid $grey66;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .select {
+            border-bottom: 2px solid $grey66;
+          }
+        }
+
         span {
           margin-right: 15px;
           background-color: yellowgreen;
@@ -131,8 +152,17 @@
         width: 330px;
 
         .infoSelectMoive {
+          margin: 50px 0;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+
+          .poster {
+            width: 180px;
+            height: 250px;
+            background-color: #777;
+            margin-bottom: 20px;
+          }
         }
       }
     }

@@ -45,6 +45,10 @@ const Booking = () => {
         <div className="selectBox">
           <div className="movieList movieListStyle">
             <p className="listName">영화</p>
+            <div className="sortCategory">
+              <p className="select">예매순</p>
+              <p>가나다순</p>
+            </div>
             <ul>
               {movies.map(movie => {
                 return (
@@ -90,6 +94,7 @@ const Booking = () => {
             <div className="infoSelectMoive">
               <div className="poster"></div>
               <p className="movieTitle">영화제목</p>
+              <p></p>
             </div>
           </div>
         </div>
