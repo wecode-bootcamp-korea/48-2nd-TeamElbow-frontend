@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './MovieList.scss';
+import './SelectSeats.scss';
 
-const MovieList = () => {
+const SelectSeats = () => {
   return (
-    <div className="movieList">
+    <div className="selectSeats">
       <div className="contents">test</div>
     </div>
   );
 };
 
-export default MovieList;
+export default SelectSeats;
