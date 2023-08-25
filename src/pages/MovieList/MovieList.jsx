@@ -4,26 +4,28 @@ import List from '../../components/List/List';
 
 const MovieList = () => {
   const [activeSort, setActiveSort] = useState('bookingRate');
-  const [uri, setUri] = useState('');
   const [movieList, setMovieList] = useState([]);
   const bookingRate = 'http://localhost:3000/movies/list?sortBy=bookingRate';
   const alphabet = 'http://localhost:3000/movies/list?sortBy=alphabet';
+  const [uri, setUri] = useState(bookingRate);
 
   const handleSortClick = sortType => {
     setActiveSort(sortType);
-    if (sortType === bookingRate) {
-      setUri('http://localhost:3000/movies/list?sortBy=bookingRate');
-    } else if (sortType === alphabet) {
-      setUri('http://localhost:3000/movies/list?sortBy=alphabet');
+    if (sortType === 'bookingRate') {
+      setUri(bookingRate);
+    } else if (sortType === 'alphabet') {
+      setUri(alphabet);
     }
   };
 
   useEffect(() => {
     fetch(uri)
       .then(response => response.json())
-      .then(result => {
-        setMovieList(result);
-      });
+      .then(response => {
+        console.log(response, '<<result');
+        setMovieList(response);
+      })
+      .catch(alert('문제발생'));
   }, [uri]);
 
   return (

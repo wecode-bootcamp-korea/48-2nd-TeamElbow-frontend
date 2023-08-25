@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './MovieDetail.scss';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+
+  const navigate = useNavigate();
 
   // console.log(params);
 
@@ -48,13 +50,17 @@ const MovieDetail = () => {
           <p>러닝타임 : {movie.movieRunningTimeMinute}분</p>
           <p>언어 : {movie.movieLanguage}</p>
           <p className="spacingPhrase">줄거리 : {movie.movieDescription}</p>
-          <button className="btnBooking">예매하기</button>
+          <button
+            className="btnBooking"
+            onClick={() => {
+              navigate('/booking');
+            }}
+          >
+            예매하기
+          </button>
         </div>
       </div>
     </div>
-    // movieDescription, movieRunningTimeMinute, movieMinimumWatchingAge, movieLanguage
-    //감독 : 크리스토퍼 놀란 장르 : 드라마, 스릴러 / 180 분 등급 : 15세이상관람가 개봉일 : 2023.08.15
-    //출연진 : 킬리언 머피, 에밀리 블런트, 맷 데이먼, 로버트 다우니 주니어, 플로렌스 퓨, 조쉬 하트넷, 케에시 에플렉, 라미 말렉, 케네스 브레스너
   );
 };
 
