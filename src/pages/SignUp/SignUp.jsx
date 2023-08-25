@@ -38,6 +38,7 @@ const SignUp = () => {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'CreateMember') {
+          console.log('should navigate');
           navigate('/login');
         }
       });

@@ -55,13 +55,17 @@
           &:hover {
             background-color: #f0f0ff;
           }
+        }
 
-          &:active {
-            border: 2px solid $theme-color;
-            background-color: $white;
-          }
+        .selected {
+          width: 100%;
+          padding: 20px 15px;
+          text-align: left;
+          border: 2px solid $white;
+          background-color: #f0f0ff;
         }
       }
+
       .movieList {
         width: 350px;
 
@@ -109,11 +113,6 @@
             &:hover {
               background-color: #f0f0ff;
             }
-
-            &:active {
-              border: 2px solid $theme-color;
-              background-color: #f7f7f7;
-            }
           }
         }
       }
@@ -130,6 +129,7 @@
 
         li {
           margin-bottom: 20px;
+
           .timeListBtn {
             padding: 15px 10px;
             background-color: $white;
@@ -139,12 +139,13 @@
             &:hover {
               background-color: #f0f0ff;
             }
-
-            &:active {
-              border: 2px solid $theme-color;
-              background-color: $white;
-            }
           }
+        }
+        .selectedTimeListBtn {
+          padding: 15px 10px;
+          background-color: #f0f0ff;
+          border: 1px solid #f0f0ff;
+          border-radius: 5px;
         }
       }
 

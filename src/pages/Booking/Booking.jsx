@@ -1,39 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './Booking.scss';
 
 const Booking = () => {
-  const [movies, setMoives] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  //영화선택
+  const movieId = searchParams.get('movieId');
+  const handleSelect = id => {
+    searchParams.set('movieId', id);
+    setSearchParams(searchParams);
+  };
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetch('/data/movieList.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setMoives(data);
+        setMovies(data);
       });
   }, []);
 
+  //날짜선택
+  const handleSelectDate = id => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set('dateId', id);
+    setSearchParams(newSearchParams);
+  };
   const [movieDate, setMovieDate] = useState([]);
+  const dateId = searchParams.get('dateId');
   useEffect(() => {
-    fetch('/data/dateList.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setMovieDate(data);
-      });
-  }, []);
+    if (setMovies) {
+      fetch('/data/dateList.json', {})
+        .then(res => res.json())
+        .then(result => {
+          setMovieDate(result);
+        });
+    }
+  }, [movieId]);
 
+  //시간선택
+  const handleSelectTime = id => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set('timeId', id);
+    setSearchParams(newSearchParams);
+  };
   const [timeList, setTimeList] = useState([]);
+  const timeId = searchParams.get('dateId');
   useEffect(() => {
-    fetch('/data/timeList.json', {
-      method: 'GET',
-    })
+    fetch('/data/dateList.json', {})
       .then(res => res.json())
       .then(data => {
         setTimeList(data);
       });
-  }, []);
+  }, [movieId]);
 
   return (
     <div className="booking">
@@ -50,12 +71,15 @@ const Booking = () => {
               <p>가나다순</p>
             </div>
             <ul>
-              {movies.map(movie => {
+              {movies.map(({ id, movieName, ageall }) => {
                 return (
-                  <li key={movie.id}>
-                    <button className="listBtn">
-                      <span>{movie.ageall}</span>
-                      {movie.movieName}
+                  <li key={id}>
+                    <button
+                      className={movieId == id ? 'selected' : 'listBtn'}
+                      onClick={() => handleSelect(id)}
+                    >
+                      <span>{ageall}</span>
+                      {movieName}
                     </button>
                   </li>
                 );
@@ -65,10 +89,15 @@ const Booking = () => {
           <div className="dateList">
             <p className="listName">날짜</p>
             <ul>
-              {movieDate.map(movie => {
+              {movieDate.map(({ id, date }) => {
                 return (
-                  <li key={movie.id}>
-                    <button className="listBtn">{movie.date}</button>
+                  <li key={id}>
+                    <button
+                      className={dateId == id ? 'selected' : 'listBtn'}
+                      onClick={() => handleSelectDate(id)}
+                    >
+                      {date}
+                    </button>
                   </li>
                 );
               })}
@@ -77,12 +106,17 @@ const Booking = () => {
           <div className="timeList movieListStyle">
             <p className="listName">시간</p>
             <ul>
-              {timeList.map(data => {
+              {timeList.map(({ id, time, seat }) => {
                 return (
-                  <li key={data.id}>
-                    <button className="timeListBtn">
-                      <p>{data.time}</p>
-                      <p>{data.seat}</p>
+                  <li key={id}>
+                    <button
+                      className={
+                        timeId == id ? 'selectedTimeListBtn' : 'timeListBtn'
+                      }
+                      onClick={() => handleSelectTime(id)}
+                    >
+                      <p>{time}</p>
+                      <p>{seat}</p>
                     </button>
                   </li>
                 );
