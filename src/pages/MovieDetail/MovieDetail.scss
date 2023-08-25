@@ -2,7 +2,7 @@
 
 .movieDetail {
   display: flex;
-  padding: 3rem 0;
+  padding: 60px 0;
 
   .moviePoster {
     flex: 1;
@@ -16,19 +16,19 @@
     flex: 3;
 
     .movieTitle {
-      margin-bottom: 1rem;
+      margin-bottom: 18px;
       font-weight: 600;
-      font-size: 2rem;
+      font-size: 34px;
     }
 
     .rateRank {
-      margin: 0 0 2rem;
-      font-size: 0.9rem;
+      margin: 0 0 34px;
+      font-size: 15px;
 
       .rate {
         position: relative;
         color: $grey66;
-        padding-right: 0.8rem;
+        padding-right: 13px;
 
         &:after {
           content: '';
@@ -43,13 +43,13 @@
       }
 
       .rank {
-        padding-left: 0.8rem;
+        padding-left: 13px;
         color: $grey66;
       }
     }
     .movieSpec {
       p {
-        margin-bottom: 0.5rem;
+        margin-bottom: 8px;
         line-height: 1.5;
 
         &.spacingPhrase {
@@ -59,14 +59,14 @@
     }
 
     .btnBooking {
-      margin-top: 1rem;
-      padding: 0.5rem 0;
+      margin-top: 16px;
+      padding: 8px 0;
       width: 180px;
       background-color: $white;
       color: $grey66;
       border: 1px solid $grey88;
-      border-radius: 0.4rem;
-      font-size: 1rem;
+      border-radius: 6px;
+      font-size: 16px;
       font-weight: 500;
 
       &:hover {
