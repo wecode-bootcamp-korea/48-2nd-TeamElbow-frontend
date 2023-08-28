@@ -5,8 +5,8 @@ import List from '../../components/List/List';
 const MovieList = () => {
   const [activeSort, setActiveSort] = useState('bookingRate');
   const [movieList, setMovieList] = useState([]);
-  const bookingRate = 'http://localhost:3000/movies/list?sortBy=bookingRate';
-  const alphabet = 'http://localhost:3000/movies/list?sortBy=alphabet';
+  const bookingRate = 'http://10.58.52.200:3000/movies/list?sortBy=bookingRate';
+  const alphabet = 'http://10.58.52.200:3000/movies/list?sortBy=alphabet';
   const [uri, setUri] = useState(bookingRate);
 
   const handleSortClick = sortType => {
@@ -24,7 +24,9 @@ const MovieList = () => {
       .then(result => {
         setMovieList(result);
       })
-      .catch(alert('문제발생'));
+      .catch(() => {
+        alert('문제발생');
+      });
   }, [uri]);
 
   return (
