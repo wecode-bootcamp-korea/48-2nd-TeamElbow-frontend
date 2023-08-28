@@ -36,17 +36,18 @@ const Header = () => {
 
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = setIsLogin(isLoggedIn);
+      const isLoggedIn = !!localStorage.getItem('authToken');
+      setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
       if (isLoggedIn && redirectPath) {
         navigate(redirectPath);
         sessionStorage.removeItem('redirectPath');
       }
-
-      checkLoginStatus();
     };
-  }, []);
+
+    checkLoginStatus();
+  }, [navigate]);
 
   return (
     <div className="header">
