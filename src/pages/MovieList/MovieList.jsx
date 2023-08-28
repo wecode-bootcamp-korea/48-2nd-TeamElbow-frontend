@@ -21,9 +21,8 @@ const MovieList = () => {
   useEffect(() => {
     fetch(uri)
       .then(response => response.json())
-      .then(response => {
-        console.log(response, '<<result');
-        setMovieList(response);
+      .then(result => {
+        setMovieList(result);
       })
       .catch(alert('문제발생'));
   }, [uri]);
