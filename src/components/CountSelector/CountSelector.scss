@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+
+.countSelector {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid $grey88;
+
+  .count {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    p {
+      margin-right: 10px;
+      font-size: 15px;
+    }
+
+    .countBtn {
+      button {
+        padding: 2px 8px;
+        background-color: $white;
+        border: 1px solid $grey88;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+
+      .number {
+        margin: 0 10px;
+      }
+    }
+  }
+}
