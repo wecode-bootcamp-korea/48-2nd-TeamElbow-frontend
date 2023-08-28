@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MyTicket = () => {
-  return <div></div>;
+  return <div>마이티켓</div>;
 };
 
 export default MyTicket;
