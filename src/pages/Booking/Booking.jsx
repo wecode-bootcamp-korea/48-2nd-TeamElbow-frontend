@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Booking.scss';
 
 const Booking = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   //영화선택
+  const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
   const handleSelect = id => {
     searchParams.set('movieId', id);
     setSearchParams(searchParams);
   };
-  const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch('/data/movieList.json', {
-      method: 'GET',
-    })
+    fetch('/data/movieList.json', {})
       .then(res => res.json())
       .then(data => {
         setMovies(data);
@@ -23,45 +23,73 @@ const Booking = () => {
   }, []);
 
   //날짜선택
+  const [dateList, setDateList] = useState([]);
   const handleSelectDate = id => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('dateId', id);
-    setSearchParams(newSearchParams);
+    searchParams.set('dateId', id);
+    setSearchParams(searchParams);
   };
-  const [movieDate, setMovieDate] = useState([]);
+
   const dateId = searchParams.get('dateId');
   useEffect(() => {
-    if (setMovies) {
+    if (movieId) {
       fetch('/data/dateList.json', {})
         .then(res => res.json())
         .then(result => {
-          setMovieDate(result);
+          setDateList(result);
         });
     }
   }, [movieId]);
 
   //시간선택
+  const timeId = searchParams.get('timeId');
   const handleSelectTime = id => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('timeId', id);
-    setSearchParams(newSearchParams);
+    searchParams.set('timeId', id);
+    setSearchParams(searchParams);
   };
-  const [timeList, setTimeList] = useState([]);
-  const timeId = searchParams.get('dateId');
-  useEffect(() => {
-    fetch('/data/dateList.json', {})
-      .then(res => res.json())
-      .then(data => {
-        setTimeList(data);
+
+  //좌석선택하기로 이동
+  const handleInputSelect = e => {
+    e.preventDefault();
+
+    const selectedAll = {
+      selectedMovie: movieId,
+      selectedDate: dateId,
+      selectedTime: timeId,
+    };
+
+    fetch('API주소', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: selectedAll,
+    })
+      .then(res => {
+        console.log(res);
+        return res.json();
+      })
+      .then(result => {
+        console.log(result);
+        if (result !== null) {
+          navigate('/');
+        }
       });
-  }, [movieId]);
+  };
+
+  //다시 선택하기
+  const handleReset = () => {
+    setDateList([]);
+    setSearchParams('');
+  };
 
   return (
     <div className="booking">
       <div className="contents">
         <div className="bookingTop">
           <h1>영화예매</h1>
-          <button className="bookingNavi">예매 다시하기</button>
+          <button className="bookingNavi" onClick={handleReset}>
+            예매 다시하기
+          </button>
         </div>
         <div className="selectBox">
           <div className="movieList movieListStyle">
@@ -88,47 +116,56 @@ const Booking = () => {
           </div>
           <div className="dateList">
             <p className="listName">날짜</p>
-            <ul>
-              {movieDate.map(({ id, date }) => {
-                return (
-                  <li key={id}>
-                    <button
-                      className={dateId == id ? 'selected' : 'listBtn'}
-                      onClick={() => handleSelectDate(id)}
-                    >
-                      {date}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
+            {dateList && dateList.length > 0 && (
+              <ul>
+                {dateList.map(({ id, date }) => {
+                  return (
+                    <li key={id}>
+                      <button
+                        className={dateId == id ? 'selected' : 'listBtn'}
+                        onClick={() => handleSelectDate(id)}
+                      >
+                        {date}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
           <div className="timeList movieListStyle">
             <p className="listName">시간</p>
             <ul>
-              {timeList.map(({ id, time, seat }) => {
-                return (
-                  <li key={id}>
-                    <button
-                      className={
-                        timeId == id ? 'selectedTimeListBtn' : 'timeListBtn'
-                      }
-                      onClick={() => handleSelectTime(id)}
-                    >
-                      <p>{time}</p>
-                      <p>{seat}</p>
-                    </button>
-                  </li>
-                );
-              })}
+              {dateList
+                .find(dateData => dateData.id == dateId)
+                ?.timeList.map(({ id, time, seat }) => {
+                  return (
+                    <li key={id}>
+                      <button
+                        className={
+                          timeId == id ? 'selectedTimeListBtn' : 'timeListBtn'
+                        }
+                        onClick={() => handleSelectTime(id)}
+                      >
+                        <p>{time}</p>
+                        <p>{seat}석</p>
+                      </button>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className="selectedMovie movieListStyle">
             <p className="listName">선택내역</p>
             <div className="infoSelectMoive">
-              <div className="poster"></div>
-              <p className="movieTitle">영화제목</p>
-              <p className="movieInfo">상영등급, 날짜, 상영시간</p>
+              <div>
+                <div className="poster"></div>
+                <p className="movieTitle">영화제목</p>
+                <p className="movieInfo">상영등급, 날짜, 상영시간</p>
+              </div>
+              <button className="goToSeatSelect" onClick={handleInputSelect}>
+                좌석선택하기
+              </button>
             </div>
           </div>
         </div>
