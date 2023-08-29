@@ -74,7 +74,9 @@
           font-size: 13px;
           padding: 15px 20px 0 20px;
 
-          p {
+          button {
+            background-color: transparent;
+            border: none;
             color: $grey66;
             margin: 0 15px 10px 0;
             padding: 5px 8px;
@@ -161,21 +163,23 @@
           justify-content: space-between;
           text-align: center;
 
-          .movieTitle {
-            font-size: 17px;
-            font-weight: bold;
-          }
+          .info {
+            .movieTitle {
+              font-size: 17px;
+              font-weight: bold;
+            }
 
-          .poster {
-            width: 180px;
-            height: 250px;
-            background-color: #777;
-            margin-bottom: 20px;
-          }
+            .poster {
+              width: 180px;
+              height: 250px;
+              background-color: #777;
+              margin-bottom: 20px;
+            }
 
-          .movieInfo {
-            margin-top: 15px;
-            font-size: 13px;
+            .movieInfo {
+              margin-top: 15px;
+              font-size: 13px;
+            }
           }
 
           .goToSeatSelect {
