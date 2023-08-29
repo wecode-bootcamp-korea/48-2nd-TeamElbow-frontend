@@ -6,7 +6,8 @@ const MovieList = () => {
   const [activeSort, setActiveSort] = useState('bookingRate');
   const [movieList, setMovieList] = useState([]);
 
-  const API = `http://10.58.52.200:3000/movies/list?sortBy=${activeSort}`;
+  // const API = `http://10.58.52.200:3000/movies/list?sortBy=${activeSort}`;
+  const API = `/data/movieData.json`;
 
   const handleSortClick = sortType => {
     setActiveSort(sortType);
@@ -47,7 +48,9 @@ const MovieList = () => {
         </div>
         <div className="listContainer">
           <ol className="listWrap">
-            <List />
+            {movieList.map(movie => (
+              <List key={movie.id} movie={movie} />
+            ))}
           </ol>
         </div>
       </div>

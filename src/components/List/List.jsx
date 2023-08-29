@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './List.scss';
 
-const List = () => {
-  const [movieList, setMovieList] = useState([]);
+const List = ({ movie }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('api')
-      .then(res => res.json())
-      .then(result => setMovieList(result));
-  }, []);
-
-  return movieList.map((movie, index) => (
-    <li
-      className="list"
-      key={index}
-      onClick={() => navigate(`/movie-detail/${movie.id}`)}
-    >
+  return (
+    <li className="list" onClick={() => navigate(`/movie-detail/${movie.id}`)}>
       <div className="moviePoster">
-        <p className="rank">{index + 1}</p>
+        <p className="rank" />
         <img
           className="moviePosterImage"
           src={movie.moviePosterImageUrl}
@@ -43,7 +32,7 @@ const List = () => {
         </button>
       </div>
     </li>
-  ));
+  );
 };
 
 export default List;
