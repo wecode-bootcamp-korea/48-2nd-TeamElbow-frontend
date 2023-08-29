@@ -20,8 +20,31 @@
     .seatGroup {
       position: relative;
 
-      .seatBlock {
-        align-items: center;
+      .row {
+        padding-bottom: 10px;
+        display: flex;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .rowBlock {
+          margin-right: 20px;
+          width: 26px;
+          height: 25px;
+          border-bottom: 1px solid $grey66;
+          font-size: 15px;
+          color: $grey66;
+          text-align: center;
+        }
+
+        .seatBlock {
+          align-items: center;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
       }
     }
   }

@@ -8,9 +8,42 @@ const SeatSelector = () => {
       <div className="seatsContainer">
         <div className="screen">screen</div>
         <div className="seatGroup">
-          {Array.from({ length: 10 }, (_, index) => (
-            <Seat key={index} />
-          ))}
+          <div className="row A">
+            <div className="rowBlock">A</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
+          <div className="row B">
+            <div className="rowBlock">B</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
+          <div className="row C">
+            <div className="rowBlock">C</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
+          <div className="row D">
+            <div className="rowBlock">D</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
+          <div className="row E">
+            <div className="rowBlock">E</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
+          <div className="row F">
+            <div className="rowBlock">F</div>
+            {Array.from({ length: 10 }, (_, index) => (
+              <Seat key={index} />
+            ))}
+          </div>
         </div>
       </div>
       <ul className="seatsState">
