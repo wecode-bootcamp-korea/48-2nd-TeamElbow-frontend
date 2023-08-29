@@ -1,0 +1,78 @@
+@import '../../styles/variables.scss';
+
+.movieDetail {
+  display: flex;
+  padding: 60px 0;
+
+  .moviePoster {
+    flex: 1;
+
+    .moviePosterImage {
+      width: 230px;
+      height: 330px;
+    }
+  }
+  .textBox {
+    flex: 3;
+
+    .movieTitle {
+      margin-bottom: 18px;
+      font-weight: 600;
+      font-size: 34px;
+    }
+
+    .rateRank {
+      margin: 0 0 34px;
+      font-size: 15px;
+
+      .rate {
+        position: relative;
+        color: $grey66;
+        padding-right: 13px;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 12px;
+          background-color: #e0e0e0;
+        }
+      }
+
+      .rank {
+        padding-left: 13px;
+        color: $grey66;
+      }
+    }
+    .movieSpec {
+      p {
+        margin-bottom: 8px;
+        line-height: 1.5;
+
+        &.spacingPhrase {
+          white-space: pre-wrap;
+        }
+      }
+    }
+
+    .btnBooking {
+      margin-top: 16px;
+      padding: 8px 0;
+      width: 180px;
+      background-color: $white;
+      color: $grey66;
+      border: 1px solid $grey88;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+
+      &:hover {
+        color: $white;
+        background-color: $theme-color;
+      }
+    }
+  }
+}

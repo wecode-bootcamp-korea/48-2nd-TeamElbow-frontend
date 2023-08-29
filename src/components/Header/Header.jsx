@@ -34,7 +34,6 @@ const Header = () => {
     }
   };
 
-  // TODO: 핵심 기능 구현 후 추가로 구현할 것
   useEffect(() => {
     const checkLoginStatus = () => {
       const isLoggedIn = !!localStorage.getItem('authToken');
@@ -54,32 +53,37 @@ const Header = () => {
     <div className="header">
       <div className="contents">
         <h1 className="logo" onClick={goHome}>
-          <img src="/images/logo.png" alt="씨네마 엘보우" />
+          <img src="/images/logo.png" alt="씨네마 엘보우 로고" />
         </h1>
         <ul>
           {isLogin ? (
             <>
               <li onClick={goLogOut}>
-                <img src="images/icon_login.png" alt="로그인" />
+                <img src="images/icon_login.png" alt="로그인 아이콘" />
                 <span>로그아웃</span>
+              </li>
+
+              <li onClick={goMyTicket}>
+                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
+                <span>마이티켓</span>
               </li>
             </>
           ) : (
             <>
               <li onClick={goLogIn}>
-                <img src="images/icon_login.png" alt="로그인" />
+                <img src="images/icon_login.png" alt="로그인 아이콘" />
                 <span>로그인</span>
               </li>
               <li onClick={goSignUp}>
-                <img src="images/icon_signup.png" alt="회원가입" />
+                <img src="images/icon_signup.png" alt="회원가입 아이콘" />
                 <span>회원가입</span>
+              </li>
+              <li onClick={goMyTicket}>
+                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
+                <span>마이티켓</span>
               </li>
             </>
           )}
-          <li onClick={goMyTicket}>
-            <img src="images/icon_myticket.png" alt="마이티켓" />
-            <span>마이티켓</span>
-          </li>
         </ul>
       </div>
     </div>
