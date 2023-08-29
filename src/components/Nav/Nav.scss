@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.nav {
+  width: 100%;
+  background-color: $theme-color;
+  z-index: 3;
+
+  &.fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+
+  ul {
+    display: flex;
+    background-color: $theme-color;
+
+    li {
+      margin-right: 60px;
+      position: relative;
+      padding: 16px 0;
+      color: $white;
+      font-size: 17px;
+      font-weight: 400;
+      cursor: pointer;
+
+      &:hover:after {
+        content: '';
+        position: absolute;
+        width: calc(100% + 18px);
+        left: 0;
+        bottom: 0;
+        border-bottom: 4px solid #ccfff5;
+      }
+    }
+  }
+}
