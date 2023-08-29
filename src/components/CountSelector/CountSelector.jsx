@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './CountSelector.scss';
 
 const CountSelector = () => {
-  // const {  }
-  // const handleClick = () => {};
+  const [counter, setCounter] = useState(0);
+  const decrease = setCounter(counter - 1);
+  const increase = setCounter(counter + 1);
+
   return (
     <div className="countSelector">
       <div className="count">
