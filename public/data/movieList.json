@@ -1,23 +1,37 @@
 [
   {
     "id": 1,
-    "ageall": "19세",
-    "movieTitle": "오펜하이머는 얼마나 좋았을까"
+    "movieMinimumWatchingAge": "19세",
+    "movieTitle": "오펜하이머는 얼마나 좋았을까",
+    "movieRunningTimeMinute": "60",
+    "moviePosterImageUrl": "/images/img_movie1.png"
   },
   {
     "id": 2,
-    "ageall": "15세",
-    "movieTitle": "시멘트 유토피아"
+    "movieMinimumWatchingAge": "15세",
+    "movieTitle": "시멘트 유토피아",
+    "movieRunningTimeMinute": "60",
+    "moviePosterImageUrl": "/images/img_movie2.png"
   },
   {
     "id": 3,
-    "ageall": "15세",
-    "movieTitle": "마스크보이"
+    "movieMinimumWatchingAge": "15세",
+    "movieTitle": "마스크보이",
+    "movieRunningTimeMinute": "60",
+    "moviePosterImageUrl": "/images/img_movie3.png"
   },
   {
     "id": 4,
-    "ageall": "19세",
+    "movieMinimumWatchingAge": "19세",
+    "movieRunningTimeMinute": "60",
+    "moviePosterImageUrl": "/images/img_movie4.png",
     "movieTitle": "너튜브"
   },
-  { "id": 5, "ageall": "15세", "movieTitle": "한강의 무코리타" }
+  {
+    "id": 5,
+    "movieMinimumWatchingAge": "15세",
+    "movieRunningTimeMinute": "60",
+    "moviePosterImageUrl": "/images/img_movie5.png",
+    "movieTitle": "한강의 무코리타"
+  }
 ]
