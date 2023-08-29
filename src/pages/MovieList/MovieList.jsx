@@ -7,7 +7,6 @@ const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
 
   const API = `http://10.58.52.128:3000/movies/list?sortBy=${activeSort}`;
-  // const API = `/data/movieData.json`;
 
   const handleSortClick = sortType => {
     setActiveSort(sortType);
@@ -19,9 +18,6 @@ const MovieList = () => {
       .then(result => {
         setMovieList(result);
       });
-    // .catch(() => {
-    //   alert('문제발생');
-    // });
   }, [API]);
 
   return (

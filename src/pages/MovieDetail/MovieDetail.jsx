@@ -8,17 +8,6 @@ const MovieDetail = () => {
 
   const navigate = useNavigate();
 
-  // console.log(params);
-
-  // useEffect(() => {
-  //   fetch(`api/movie-datail/${movieId}`)
-  //     .then(response => response.json())
-  //     .then(result => setMovie(result));
-  // }, []);
-
-  // const isEmpty = Object.keys(movie).length === 0;
-  // if (isEmpty) return null;
-
   useEffect(() => {
     fetch(`http://10.58.52.128:3000/movies/detail?movieId=${movieId}`)
       .then(res => res.json())
