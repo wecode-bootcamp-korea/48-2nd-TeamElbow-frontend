@@ -15,7 +15,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
     );
     const result = await response.json();
 
-    setMovie({ ...result, isMorningScreening: result.isMorningScreening });
+    setMovie({ ...result, isEarlybird: result.isEarlybird });
 
     return result;
   };
@@ -63,10 +63,10 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
-    const isMorningScreening = movie.isMorningScreening;
+    const isEarlybird = movie.isEarlybird;
 
     Object.keys(audienceType).forEach(selectedAudienceKey => {
-      const audiencePrice = isMorningScreening
+      const audiencePrice = isEarlybird
         ? morningPrices[selectedAudienceKey]
         : regularPrices[selectedAudienceKey];
 
