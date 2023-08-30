@@ -6,12 +6,16 @@ import './Booking.scss';
 const Booking = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const queryParams = Object.fromEntries(searchParams);
+  const queryString = Object.keys(queryParams)
+    .map(key => `${key}=${queryParams[key]}`)
+    .join('&');
+  console.log(queryString);
   //영화선택
   const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
   useEffect(() => {
-    fetch('http://10.58.52.245:3000/booking/list?sortBy=bookingRate', {})
+    fetch('http://10.58.52.245:3000/booking/list?sortBy=bookingRate')
       .then(res => res.json())
       .then(data => {
         setMovies(data);
@@ -24,11 +28,11 @@ const Booking = () => {
   const handleSelect = id => {
     searchParams.set('movieId', id);
     searchParams.delete('timeId');
-    searchParams.delete('dateId');
+    searchParams.delete('date');
     setSearchParams(searchParams);
 
     if (movieId) {
-      fetch(`http://10.58.52.245:3000/booking/Schedule?movieId=${movieId}`, {
+      fetch(`http://10.58.52.245:3000/booking/date?movieId=${movieId}`, {
         method: 'GET',
         header: JSON.stringify({
           movieId,
@@ -40,33 +44,34 @@ const Booking = () => {
         });
     }
   };
-  console.log(movieId);
 
   //날짜선택
   const [dateList, setDateList] = useState([]);
+  const date = searchParams.get('date');
+
+  const realDate = date?.split('T')[0];
+  console.log(realDate);
   const handleSelectDate = id => {
-    searchParams.set('dateId', id);
+    searchParams.set('date', id);
     searchParams.delete('timeId');
     setSearchParams(searchParams);
-  };
 
-  const dateId = searchParams.get('dateId');
-  useEffect(() => {
-    if (movieId) {
-      fetch(`http://10.58.52.245:3000/booking/Schedule?${movieId}`, {
-        method: 'GET',
-        header: JSON.stringify({
-          movieId,
-        }),
-      })
+    if (realDate) {
+      fetch(
+        `http://10.58.52.245:3000/booking/schedule?movieId=${movieId}&date=${realDate}`,
+        {
+          method: 'GET',
+        },
+      )
         .then(res => res.json())
         .then(result => {
-          setDateList(result);
+          setTimeList(result);
         });
     }
-  }, [movieId]);
+  };
 
   //시간선택
+  const [timeList, setTimeList] = useState([]);
   const timeId = searchParams.get('timeId');
   const handleSelectTime = id => {
     searchParams.set('timeId', id);
@@ -76,20 +81,7 @@ const Booking = () => {
   //좌석선택하기로 이동
   const goToSelectSeats = e => {
     e.preventDefault();
-    // 실제로 최종적으로 결제 시 백엔드에 보내줄 데이터는 searchParams로 저장, 페이지 이동 시에도 searchParams 달아서 이동
-    // 각 페이지별로 보여줘야 하는 데이터(e.g. thumbnail, movieTitle)는 location 객체로 전달
-
-    // 백엔드에 전달할 필요는 없지만, 각 페이지에 보여야 하기 때문에 쭉 전달해야 할 데이터
-    // const movieInfo = {
-    //   movieTitle,
-    //   moviePosterImageUrl,
-    // screeningId,
-    //movieMinimumWatchingAge,
-    //movieRunningTimeMinute
-    // };
-
-    navigate(`/select-seats?${searchParams}`);
-    // navigate(`/select-seats?${searchParams}`, { state: movieInfo });
+    navigate(`/select-seats?screeningId=${timeId} `);
   };
 
   //다시 선택하기
@@ -186,14 +178,14 @@ const Booking = () => {
           <div className="dateList">
             <p className="listName">날짜</p>
             <ul>
-              {dateList.map(({ id, screeningTime }) => {
+              {dateList.map(date => {
                 return (
-                  <li key={id}>
+                  <li key={date}>
                     <button
-                      className={dateId == id ? 'selected' : 'listBtn'}
-                      onClick={() => handleSelectDate(id)}
+                      className={date == date ? 'selected' : 'listBtn'}
+                      onClick={() => handleSelectDate(date)}
                     >
-                      {screeningTime}
+                      {date}
                     </button>
                   </li>
                 );
@@ -203,32 +195,28 @@ const Booking = () => {
           <div className="timeList movieListStyle">
             <p className="listName">시간</p>
             <ul>
-              {dateList
-                .find(dateData => dateData.index == dateId)
-                ?.theater.map(({ theaterId, timeList }, index) => {
-                  return (
-                    <div key={index}>
-                      <p>{theaterId}관</p>
-                      {timeList.map(({ time, seat }) => {
-                        return (
-                          <li key={id}>
-                            <button
-                              className={
-                                timeId == id
-                                  ? 'selectedTimeListBtn'
-                                  : 'timeListBtn'
-                              }
-                              onClick={() => handleSelectTime(id)}
-                            >
-                              <p>{time}</p>
-                              <p>{seat}석</p>
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
+              {timeList.map(item => {
+                console.log(item);
+                return (
+                  <div key={item.screeningId}>
+                    <p>{item.theaterName}</p>
+
+                    <li>
+                      <button
+                        className={
+                          timeId == item.screeningId
+                            ? 'selectedTimeListBtn'
+                            : 'timeListBtn'
+                        }
+                        onClick={() => handleSelectTime(item.screeningId)}
+                      >
+                        <p>{item.screeningTime}</p>
+                        <p>{item.remainingSeats}석</p>
+                      </button>
+                    </li>
+                  </div>
+                );
+              })}
             </ul>
           </div>
           <div className="selectedMovie movieListStyle">
