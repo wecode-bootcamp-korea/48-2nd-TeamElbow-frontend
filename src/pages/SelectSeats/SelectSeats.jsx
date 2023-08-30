@@ -19,6 +19,8 @@ const SelectSeats = () => {
     senior: '우대',
   };
 
+  const totalCount = counters.adult + counters.teenager + counters.senior;
+
   return (
     <div className="selectSeats contents">
       <div className="bookingTop">
@@ -37,6 +39,7 @@ const SelectSeats = () => {
           <SeatSelector
             selectedSeat={selectedSeat}
             setSelectedSeat={setSelectedSeat}
+            totalCount={totalCount}
           ></SeatSelector>
         </div>
         <SelectResult

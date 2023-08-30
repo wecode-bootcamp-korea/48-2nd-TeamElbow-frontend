@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './SeatSelector.scss';
 
-const SeatSelector = ({ selectedSeat, setSelectedSeat }) => {
+const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const [seatsData, setSeatsData] = useState([]);
   const { screeningId } = useParams();
   useEffect(() => {
@@ -15,10 +15,10 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat }) => {
   }, []);
 
   const handleSeatClick = (seatRow, seatId, seatColumn) => {
-    // if (selectedSeat.length >= totalCount) {
-    //   alert('초과선택');
-    //   return;
-    // }
+    if (selectedSeat.length >= totalCount) {
+      alert('최대 선택 가능 좌석 수를 초과하였습니다.');
+      return;
+    }
     const arr = [...selectedSeat];
     const clickedSeat = arr.find(
       seat =>
