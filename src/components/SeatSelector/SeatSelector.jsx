@@ -1,49 +1,77 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './SeatSelector.scss';
 
-const SeatSelector = () => {
-  const Seat = () => <div className="seatBlock common" />;
+const SeatSelector = ({ selectedSeat, setSelectedSeat }) => {
+  const [seatsData, setSeatsData] = useState([]);
+  const { screeningId } = useParams();
+  useEffect(() => {
+    // fetch(
+    //   `http://127.0.0.1:3000/booking/seatsInformation?screeningId=1${screeningId}`,
+    // )
+    fetch('/data/seatData.json')
+      .then(res => res.json())
+      .then(result => setSeatsData(result));
+  }, []);
+
+  const handleSeatClick = (seatRow, seatId, seatColumn) => {
+    // if (selectedSeat.length >= totalCount) {
+    //   alert('초과선택');
+    //   return;
+    // }
+    const arr = [...selectedSeat];
+    const clickedSeat = arr.find(
+      seat =>
+        seat.seatId === seatId &&
+        seat.seatRow === seatRow &&
+        seat.seatColumn === seatColumn,
+    );
+
+    if (clickedSeat) {
+      const idx = arr.indexOf(clickedSeat);
+      arr.splice(idx, 1);
+      setSelectedSeat(arr);
+    } else {
+      setSelectedSeat(prev => [...prev, { seatId, seatRow, seatColumn }]);
+    }
+  };
+
+  const Seat = ({ seat, selectedSeat, handleSeatClick, rowData }) => (
+    <div
+      className={`seatBlock ${seat.isSeatBooked ? 'booked' : 'common'} ${
+        selectedSeat.some(
+          s =>
+            s.seatId === seat.seatId &&
+            s.seatRow === rowData.seatRow &&
+            s.seatColumn === seat.seatColumn,
+        )
+          ? 'selected'
+          : ''
+      }`}
+      onClick={() =>
+        handleSeatClick(rowData.seatRow, seat.seatId, seat.seatColumn)
+      }
+    ></div>
+  );
   return (
     <div className="seatSelector">
       <div className="seatsContainer">
         <div className="screen">screen</div>
         <div className="seatGroup">
-          <div className="row A">
-            <div className="rowBlock">A</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
-          <div className="row B">
-            <div className="rowBlock">B</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
-          <div className="row C">
-            <div className="rowBlock">C</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
-          <div className="row D">
-            <div className="rowBlock">D</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
-          <div className="row E">
-            <div className="rowBlock">E</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
-          <div className="row F">
-            <div className="rowBlock">F</div>
-            {Array.from({ length: 10 }, (_, index) => (
-              <Seat key={index} />
-            ))}
-          </div>
+          {seatsData.map(rowData => (
+            <div className={`row ${rowData.seatRow}`} key={rowData.seatRow}>
+              <div className="rowBlock">{rowData.seatRow}</div>
+              {rowData.seats.map(seat => (
+                <Seat
+                  key={seat.seatId}
+                  seat={seat}
+                  selectedSeat={selectedSeat}
+                  handleSeatClick={handleSeatClick}
+                  rowData={rowData}
+                />
+              ))}
+            </div>
+          ))}
         </div>
       </div>
       <ul className="seatsState">

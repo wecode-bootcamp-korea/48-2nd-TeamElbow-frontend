@@ -6,6 +6,7 @@ import CountSelector from '../../components/CountSelector/CountSelector';
 import SeatSelector from '../../components/SeatSelector/SeatSelector';
 
 const SelectSeats = () => {
+  const [selectedSeat, setSelectedSeat] = useState([]);
   const [counters, setCounters] = useState({
     adult: 0,
     teenager: 0,
@@ -33,11 +34,15 @@ const SelectSeats = () => {
             counters={counters}
             setCounters={setCounters}
           ></CountSelector>
-          <SeatSelector></SeatSelector>
+          <SeatSelector
+            selectedSeat={selectedSeat}
+            setSelectedSeat={setSelectedSeat}
+          ></SeatSelector>
         </div>
         <SelectResult
           audienceType={audienceType}
           counters={counters}
+          selectedSeat={selectedSeat}
         ></SelectResult>
       </div>
     </div>

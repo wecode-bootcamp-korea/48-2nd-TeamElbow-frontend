@@ -57,7 +57,7 @@
     height: 15px;
 
     &.selected {
-      background-color: $theme-color;
+      background-color: $theme-color !important;
     }
 
     &.booked {

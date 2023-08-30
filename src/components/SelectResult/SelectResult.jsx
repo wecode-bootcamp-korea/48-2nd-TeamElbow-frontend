@@ -2,10 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './SelectResult.scss';
 
-const SelectResult = ({ audienceType, counters }) => {
+const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
   const [movie, setMovie] = useState({});
-  const { movieId } = useParams();
+  const { screeningId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(
+      `http://127.0.0.1:3000/booking/movieInformation?screeningId=1${screeningId}`,
+    )
+      .then(res => res.json())
+      .then(result => setMovie(result));
+  }, []);
 
   const goPayments = () => {
     // fetch('API', {
@@ -39,8 +47,8 @@ const SelectResult = ({ audienceType, counters }) => {
           <p>{movie.movieTitle}</p>
         </div>
         <div className="dateTime">
-          <p>{movie.movieDate}</p>
-          <p>{movie.movieTime}</p>
+          <p>{movie.screeningDate}</p>
+          <p>{movie.screeningTime}</p>
         </div>
         <div className="moviePoster">
           <img src={movie.moviePosterImageUrl} alt={movie.movieTitle} />
@@ -49,8 +57,11 @@ const SelectResult = ({ audienceType, counters }) => {
 
       <div className="seatsNumber">
         <p>선택좌석</p>
-        <span>D8</span>
-        {/* <span>{selectedSeatsId}</span> */}
+        <span>
+          {selectedSeat
+            .map(seat => `${seat.seatRow}${seat.seatColumn}`)
+            .join(', ')}
+        </span>
       </div>
 
       <div className="payInfo">
