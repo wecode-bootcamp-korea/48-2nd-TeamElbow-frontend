@@ -11,7 +11,7 @@ const MovieDetail = () => {
   // console.log(params);
 
   // useEffect(() => {
-  //   fetch(`api/movie-datail/${movieId}`)
+  //   fetch(`api/movie-datailC`)
   //     .then(response => response.json())
   //     .then(result => setMovie(result));
   // }, []);

@@ -10,20 +10,37 @@ const Booking = () => {
   //영화선택
   const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
+  useEffect(() => {
+    fetch('http://10.58.52.245:3000/booking/list?sortBy=bookingRate', {})
+      .then(res => res.json())
+      .then(data => {
+        setMovies(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   const handleSelect = id => {
     searchParams.set('movieId', id);
     searchParams.delete('timeId');
     searchParams.delete('dateId');
     setSearchParams(searchParams);
-  };
 
-  useEffect(() => {
-    fetch('/data/movieList.json', {})
-      .then(res => res.json())
-      .then(data => {
-        setMovies(data);
-      });
-  }, []);
+    if (movieId) {
+      fetch(`http://10.58.52.245:3000/booking/Schedule?movieId=${movieId}`, {
+        method: 'GET',
+        header: JSON.stringify({
+          movieId,
+        }),
+      })
+        .then(res => res.json())
+        .then(result => {
+          setDateList(result);
+        });
+    }
+  };
+  console.log(movieId);
 
   //날짜선택
   const [dateList, setDateList] = useState([]);
@@ -36,7 +53,12 @@ const Booking = () => {
   const dateId = searchParams.get('dateId');
   useEffect(() => {
     if (movieId) {
-      fetch('/data/dateList.json', {})
+      fetch(`http://10.58.52.245:3000/booking/Schedule?${movieId}`, {
+        method: 'GET',
+        header: JSON.stringify({
+          movieId,
+        }),
+      })
         .then(res => res.json())
         .then(result => {
           setDateList(result);
@@ -79,8 +101,9 @@ const Booking = () => {
 
   //sorting
   const [activeSort, setActiveSort] = useState('bookingRate');
-  const bookingRate = '';
-  const alphabet = '';
+  const bookingRate =
+    'http://10.58.52.245:3000/booking/list?sortBy=bookingRate';
+  const alphabet = 'http://10.58.52.245:3000/booking/list?sortBy=alphabet';
   const [uri, setUri] = useState(bookingRate);
   // const API = 'API주소';
 
@@ -105,7 +128,7 @@ const Booking = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {
     if (movieId) {
-      fetch('/data/movieList.json', {})
+      fetch('http://10.58.52.245:3000/booking/list?sortBy=bookingRate', {})
         .then(res => res.json())
         .then(data => {
           const selectedMovieInfo = data.find(
@@ -145,14 +168,14 @@ const Booking = () => {
               </button>
             </div>
             <ul>
-              {movies.map(({ id, movieTitle, movieMinimumWatchingAge }) => {
+              {movies.map(({ id, movieTitle, minimumWatchingAge }) => {
                 return (
                   <li key={id}>
                     <button
                       className={movieId == id ? 'selected' : 'listBtn'}
                       onClick={() => handleSelect(id)}
                     >
-                      <span>{movieMinimumWatchingAge}</span>
+                      <span>{minimumWatchingAge}</span>
                       {movieTitle}
                     </button>
                   </li>
@@ -163,14 +186,14 @@ const Booking = () => {
           <div className="dateList">
             <p className="listName">날짜</p>
             <ul>
-              {dateList.map(({ id, date }) => {
+              {dateList.map(({ id, screeningTime }) => {
                 return (
                   <li key={id}>
                     <button
                       className={dateId == id ? 'selected' : 'listBtn'}
                       onClick={() => handleSelectDate(id)}
                     >
-                      {date}
+                      {screeningTime}
                     </button>
                   </li>
                 );
@@ -181,12 +204,12 @@ const Booking = () => {
             <p className="listName">시간</p>
             <ul>
               {dateList
-                .find(dateData => dateData.id == dateId)
-                ?.theater.map(({ id, theaterId, timeList }) => {
+                .find(dateData => dateData.index == dateId)
+                ?.theater.map(({ theaterId, timeList }, index) => {
                   return (
-                    <div key={id}>
+                    <div key={index}>
                       <p>{theaterId}관</p>
-                      {timeList.map(({ id, time, seat }) => {
+                      {timeList.map(({ time, seat }) => {
                         return (
                           <li key={id}>
                             <button
