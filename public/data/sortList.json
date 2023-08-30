@@ -1,0 +1,12 @@
+[
+  {
+    "selectedMovie": 1,
+    "title": "예매순",
+    "value": "rate"
+  },
+  {
+    "id": 2,
+    "title": "가나다순",
+    "value": "ascending"
+  }
+]
