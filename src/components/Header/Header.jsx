@@ -36,17 +36,18 @@ const Header = () => {
 
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = setIsLogin(isLoggedIn);
+      const isLoggedIn = !!localStorage.getItem('authToken');
+      setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
       if (isLoggedIn && redirectPath) {
         navigate(redirectPath);
         sessionStorage.removeItem('redirectPath');
       }
-
-      checkLoginStatus();
     };
-  }, []);
+
+    checkLoginStatus();
+  }, [navigate]);
 
   return (
     <div className="header">
@@ -58,7 +59,7 @@ const Header = () => {
           {isLogin ? (
             <>
               <li onClick={goLogOut}>
-                <img src="images/icon_login.png" alt="로그인 아이콘" />
+                <img src="/images/icon_login.png" alt="로그인" />
                 <span>로그아웃</span>
               </li>
 
@@ -70,11 +71,11 @@ const Header = () => {
           ) : (
             <>
               <li onClick={goLogIn}>
-                <img src="images/icon_login.png" alt="로그인 아이콘" />
+                <img src="/images/icon_login.png" alt="로그인" />
                 <span>로그인</span>
               </li>
               <li onClick={goSignUp}>
-                <img src="images/icon_signup.png" alt="회원가입 아이콘" />
+                <img src="/images/icon_signup.png" alt="회원가입" />
                 <span>회원가입</span>
               </li>
               <li onClick={goMyTicket}>
@@ -83,6 +84,10 @@ const Header = () => {
               </li>
             </>
           )}
+          <li onClick={goMyTicket}>
+            <img src="/images/icon_myticket.png" alt="마이티켓" />
+            <span>마이티켓</span>
+          </li>
         </ul>
       </div>
     </div>

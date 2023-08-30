@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.movieList {
+  margin-top: 60px;
+  width: 100%;
+
+  .contents {
+    .title {
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid $grey66;
+      font-size: 32px;
+    }
+
+    .sortTab {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: end;
+
+      .btnSort {
+        position: relative;
+        padding: 0 14px;
+        display: inline-block;
+        background-color: $white;
+        border: none;
+        font-size: 16px;
+        color: $grey66;
+
+        &:last-child {
+          padding-right: 0;
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 12px;
+            background-color: $grey88;
+          }
+        }
+
+        &.on {
+          font-weight: 600;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .listContainer {
+      .listWrap {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
