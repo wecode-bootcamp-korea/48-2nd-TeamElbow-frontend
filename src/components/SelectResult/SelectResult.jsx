@@ -3,16 +3,39 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './SelectResult.scss';
 
 const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
+  const token = localStorage.getItem('token');
   const [movie, setMovie] = useState({});
+  const [price, setPrice] = useState({});
   const { screeningId } = useParams();
   const navigate = useNavigate();
 
+  const movieInformation = async () => {
+    const response = await fetch(
+      `http://127.0.0.1:3000/booking/movieInformation?screeningId=${screeningId}`,
+    );
+    const result = await response.json();
+
+    setMovie({ ...result, isMorningScreening: result.isMorningScreening });
+
+    return result;
+  };
+
+  const ticketPrice = async () => {
+    return await fetch(
+      'http://127.0.0.1:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
+    );
+  };
+
+  console.log();
+
   useEffect(() => {
-    fetch(
-      `http://127.0.0.1:3000/booking/movieInformation?screeningId=1${screeningId}`,
-    )
+    movieInformation()
       .then(res => res.json())
       .then(result => setMovie(result));
+
+    ticketPrice()
+      .then(res => res.json())
+      .then(result => setPrice(result));
   }, []);
 
   const goPayments = () => {
@@ -20,6 +43,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
     //   method: 'POST',
     //   headers: {
     //     'Content-type': 'application/json',
+    //  authorization: token
     //   },
     //   body: JSON.stringify({
     //     seatId: selectedSeatsId,
@@ -30,13 +54,37 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
     //   .then(response => response.json())
     //   .then(result => {
     //     if (result.message === 'SUCCESS') {
-    //       localStorage.setItem('token', result.accessToken);
     //       navigate('/payments');
     //     } else {
     //       alert('좌석을 다시 선택하세요');
     //     }
     //   });
-    navigate('/payments');
+  };
+
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    const isMorningScreening = movie.isMorningScreening;
+
+    Object.keys(audienceType).forEach(selectedAudienceKey => {
+      const audiencePrice = isMorningScreening
+        ? morningPrices[selectedAudienceKey]
+        : regularPrices[selectedAudienceKey];
+
+      totalPrice += audiencePrice * counters[selectedAudienceKey];
+    });
+    return totalPrice;
+  };
+
+  const morningPrices = {
+    normal: 18000,
+    teenager: 8000,
+    concession: 8000,
+  };
+
+  const regularPrices = {
+    normal: 20000,
+    teenager: 10000,
+    concession: 10000,
   };
 
   return (
@@ -78,7 +126,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
         <div className="price">
           <p>결제금액</p>
           <p>
-            <span className="colored">totalPrice</span>원
+            <span className="colored">{calculateTotalPrice()}</span>원
           </p>
         </div>
       </div>

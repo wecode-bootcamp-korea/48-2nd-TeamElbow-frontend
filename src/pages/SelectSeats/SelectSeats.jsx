@@ -19,13 +19,22 @@ const SelectSeats = () => {
     senior: '우대',
   };
 
+  const handleReset = () => {
+    setSelectedSeat([]);
+    setCounters({
+      adult: 0,
+      teenager: 0,
+      senior: 0,
+    });
+  };
+
   const totalCount = counters.adult + counters.teenager + counters.senior;
 
   return (
     <div className="selectSeats contents">
       <div className="bookingTop">
         <h1>영화예매</h1>
-        <button type="button" className="resetButton">
+        <button type="button" className="resetButton" onClick={handleReset}>
           초기화
         </button>
       </div>
@@ -50,7 +59,6 @@ const SelectSeats = () => {
       </div>
     </div>
   );
-  //movieTitle, movieRunningTimeMinute, movieReleaseDate, seatPrice, seatId ,seatIsBooked, memberBirthday
 };
 
 export default SelectSeats;

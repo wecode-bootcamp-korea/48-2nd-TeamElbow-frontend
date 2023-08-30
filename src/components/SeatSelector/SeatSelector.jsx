@@ -6,19 +6,15 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const [seatsData, setSeatsData] = useState([]);
   const { screeningId } = useParams();
   useEffect(() => {
-    // fetch(
-    //   `http://127.0.0.1:3000/booking/seatsInformation?screeningId=1${screeningId}`,
-    // )
+    fetch(
+      `http://127.0.0.1:3000/booking/seatsInformation?screeningId=${screeningId}`,
+    );
     fetch('/data/seatData.json')
       .then(res => res.json())
       .then(result => setSeatsData(result));
   }, []);
 
   const handleSeatClick = (seatRow, seatId, seatColumn) => {
-    if (selectedSeat.length >= totalCount) {
-      alert('최대 선택 가능 좌석 수를 초과하였습니다.');
-      return;
-    }
     const arr = [...selectedSeat];
     const clickedSeat = arr.find(
       seat =>
@@ -31,6 +27,8 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
       const idx = arr.indexOf(clickedSeat);
       arr.splice(idx, 1);
       setSelectedSeat(arr);
+    } else if (selectedSeat.length >= totalCount) {
+      return alert('최대 선택 가능 좌석 수를 초과하였습니다.');
     } else {
       setSelectedSeat(prev => [...prev, { seatId, seatRow, seatColumn }]);
     }
@@ -38,7 +36,10 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
 
   const Seat = ({ seat, selectedSeat, handleSeatClick, rowData }) => (
     <div
-      className={`seatBlock ${seat.isSeatBooked ? 'booked' : 'common'} ${
+      className={`seatBlock ${
+        (seat.isSeatBooked ? 'booked' : 'common',
+        seat.seatType === 'disabled' ? 'booked' : 'common')
+      } ${
         selectedSeat.some(
           s =>
             s.seatId === seat.seatId &&
