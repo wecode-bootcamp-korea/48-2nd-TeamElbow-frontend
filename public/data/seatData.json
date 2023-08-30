@@ -1,0 +1,392 @@
+[
+  {
+    "seatRow": "A",
+    "seats": [
+      {
+        "seatId": 1,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 2,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 3,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 4,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 5,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 6,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 7,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 8,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 9,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 10,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  },
+  {
+    "seatRow": "B",
+    "seats": [
+      {
+        "seatId": 11,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 12,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 13,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 14,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 15,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 16,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 17,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 18,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 19,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 20,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  },
+  {
+    "seatRow": "C",
+    "seats": [
+      {
+        "seatId": 21,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 22,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 23,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 24,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 25,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 26,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 27,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 28,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 29,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 30,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  },
+  {
+    "seatRow": "D",
+    "seats": [
+      {
+        "seatId": 31,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 32,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 33,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 34,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 35,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 36,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 37,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 38,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 39,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 40,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  },
+  {
+    "seatRow": "E",
+    "seats": [
+      {
+        "seatId": 41,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 42,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 43,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 44,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 45,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 46,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 47,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 48,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 49,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 50,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  },
+  {
+    "seatRow": "F",
+    "seats": [
+      {
+        "seatId": 51,
+        "seatColumn": 1,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 52,
+        "seatColumn": 2,
+        "isSeatBooked": false,
+        "seatType": "light"
+      },
+      {
+        "seatId": 53,
+        "seatColumn": 3,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 54,
+        "seatColumn": 4,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 55,
+        "seatColumn": 5,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 56,
+        "seatColumn": 6,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 57,
+        "seatColumn": 7,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 58,
+        "seatColumn": 8,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 59,
+        "seatColumn": 9,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      },
+      {
+        "seatId": 60,
+        "seatColumn": 10,
+        "isSeatBooked": false,
+        "seatType": "normal"
+      }
+    ]
+  }
+]

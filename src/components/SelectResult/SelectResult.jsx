@@ -1,56 +1,92 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './SelectResult.scss';
 
-const SelectResult = () => {
+const SelectResult = ({ audienceType, counters }) => {
+  const [movie, setMovie] = useState({});
+  const { movieId } = useParams();
+  const navigate = useNavigate();
+
+  const goPayments = () => {
+    // fetch('API', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     seatId: selectedSeatsId,
+    //     totalPrice: totalPrice,
+    //     screeningId: movie.screeningId,
+    //   }),
+    // })
+    //   .then(response => response.json())
+    //   .then(result => {
+    //     if (result.message === 'SUCCESS') {
+    //       localStorage.setItem('token', result.accessToken);
+    //       navigate('/payments');
+    //     } else {
+    //       alert('좌석을 다시 선택하세요');
+    //     }
+    //   });
+    navigate('/payments');
+  };
+
   return (
     <div className="selectResult">
       <div className="movieInfo">
         <div className="movieTitle">
-          <span>15세 이상</span>
-          <p>악마는 구라다를 입는다</p>
+          <span>{movie.movieMinimumWatchingAge}</span>
+          <p>{movie.movieTitle}</p>
         </div>
         <div className="dateTime">
-          <p>2023.08.28(월)</p>
-          <p>12:00~14:00</p>
+          <p>{movie.movieDate}</p>
+          <p>{movie.movieTime}</p>
         </div>
         <div className="moviePoster">
-          <img
-            src="https://images.unsplash.com/photo-1692997262378-b44cdc69f54d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1978&q=80"
-            alt="악마는 구라다를 입는다"
-          />
+          <img src={movie.moviePosterImageUrl} alt={movie.movieTitle} />
         </div>
       </div>
 
       <div className="seatsNumber">
         <p>선택좌석</p>
         <span>D8</span>
+        {/* <span>{selectedSeatsId}</span> */}
       </div>
 
       <div className="payInfo">
-        <p className="count">
-          <span>
-            성인 <em>2</em>
-          </span>
-        </p>
+        {Object.keys(audienceType).map(selectedAudienceKey => (
+          <p className="count" key={selectedAudienceKey}>
+            {counters[selectedAudienceKey] > 0 && (
+              <span>
+                {audienceType[selectedAudienceKey]}
+                <em>{counters[selectedAudienceKey]}</em>
+              </span>
+            )}
+          </p>
+        ))}
         <div className="price">
           <p>결제금액</p>
           <p>
-            <span className="colored">0</span>원
+            <span className="colored">totalPrice</span>원
           </p>
         </div>
       </div>
       <div className="buttonWrap">
-        <button type="button" className="prev">
+        <button
+          type="button"
+          className="prev"
+          onClick={() => {
+            navigate('/booking');
+          }}
+        >
           이전
         </button>
-        <button type="button" className="next">
+        <button type="button" className="next" onClick={goPayments}>
           다음
         </button>
       </div>
     </div>
   );
-  //movieTitle, movieRunningTimeMinute, movieReleaseDate, seatPrice, seatId ,seatIsBooked, memberBirthday
 };
 
 export default SelectResult;
