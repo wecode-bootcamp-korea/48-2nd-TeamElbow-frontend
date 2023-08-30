@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Payments = () => {
-  return <div></div>;
+  return <div className="payments contents"></div>;
 };
 
 export default Payments;
