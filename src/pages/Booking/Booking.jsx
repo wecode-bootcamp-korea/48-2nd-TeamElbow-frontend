@@ -6,11 +6,7 @@ import './Booking.scss';
 const Booking = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParams = Object.fromEntries(searchParams);
-  const queryString = Object.keys(queryParams)
-    .map(key => `${key}=${queryParams[key]}`)
-    .join('&');
-  console.log(queryString);
+
   //영화선택
   const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
@@ -50,7 +46,7 @@ const Booking = () => {
   const date = searchParams.get('date');
 
   const realDate = date?.split('T')[0];
-  console.log(realDate);
+
   const handleSelectDate = id => {
     searchParams.set('date', id);
     searchParams.delete('timeId');
@@ -196,7 +192,6 @@ const Booking = () => {
             <p className="listName">시간</p>
             <ul>
               {timeList.map(item => {
-                console.log(item);
                 return (
                   <div key={item.screeningId}>
                     <p>{item.theaterName}</p>
