@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Booking.scss';
-
 const Booking = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,13 +19,11 @@ const Booking = () => {
         console.log(error);
       });
   }, []);
-
   const handleSelect = id => {
     searchParams.set('movieId', id);
     searchParams.delete('timeId');
     searchParams.delete('date');
     setSearchParams(searchParams);
-
     if (movieId) {
       fetch(`http://10.58.52.245:3000/booking/date?movieId=${movieId}`, {
         method: 'GET',
@@ -40,7 +37,6 @@ const Booking = () => {
         });
     }
   };
-
   //날짜선택
   const [dateList, setDateList] = useState([]);
   const date = searchParams.get('date');
@@ -51,7 +47,6 @@ const Booking = () => {
     searchParams.set('date', id);
     searchParams.delete('timeId');
     setSearchParams(searchParams);
-
     if (realDate) {
       fetch(
         `http://10.58.52.245:3000/booking/schedule?movieId=${movieId}&date=${realDate}`,
@@ -65,7 +60,6 @@ const Booking = () => {
         });
     }
   };
-
   //시간선택
   const [timeList, setTimeList] = useState([]);
   const timeId = searchParams.get('timeId');
@@ -73,20 +67,17 @@ const Booking = () => {
     searchParams.set('timeId', id);
     setSearchParams(searchParams);
   };
-
   //좌석선택하기로 이동
   const goToSelectSeats = e => {
     e.preventDefault();
     navigate(`/select-seats?screeningId=${timeId} `);
   };
-
   //다시 선택하기
   const handleReset = () => {
     setDateList([]);
     setSelectedMovie('');
     setSearchParams('');
   };
-
   //sorting
   const [activeSort, setActiveSort] = useState('bookingRate');
   const bookingRate =
@@ -94,7 +85,6 @@ const Booking = () => {
   const alphabet = 'http://10.58.52.245:3000/booking/list?sortBy=alphabet';
   const [uri, setUri] = useState(bookingRate);
   // const API = 'API주소';
-
   const handleSort = sortType => {
     setActiveSort(sortType);
     if (sortType === 'bookingRate') {
@@ -103,7 +93,6 @@ const Booking = () => {
       setUri(alphabet);
     }
   };
-
   useEffect(() => {
     fetch(uri)
       .then(response => response.json())
@@ -111,7 +100,6 @@ const Booking = () => {
         setMovies(result);
       });
   }, [uri]);
-
   //선택영화
   const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {
@@ -126,7 +114,6 @@ const Booking = () => {
         });
     }
   }, [movieId]);
-
   return (
     <div className="booking">
       <div className="contents">
@@ -195,7 +182,6 @@ const Booking = () => {
                 return (
                   <div key={item.screeningId}>
                     <p>{item.theaterName}</p>
-
                     <li>
                       <button
                         className={
@@ -242,5 +228,4 @@ const Booking = () => {
     </div>
   );
 };
-
 export default Booking;

@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import './MovieList.scss';
 import List from '../../components/List/List';
+import './MovieList.scss';
 
 const MovieList = () => {
   const [activeSort, setActiveSort] = useState('bookingRate');
   const [movieList, setMovieList] = useState([]);
-  const bookingRate = 'http://10.58.52.200:3000/movies/list?sortBy=bookingRate';
-  const alphabet = 'http://10.58.52.200:3000/movies/list?sortBy=alphabet';
-  const [uri, setUri] = useState(bookingRate);
+
+  const API = `http://10.58.52.128:3000/movies/list?sortBy=${activeSort}`;
 
   const handleSortClick = sortType => {
     setActiveSort(sortType);
-    if (sortType === 'bookingRate') {
-      setUri(bookingRate);
-    } else if (sortType === 'alphabet') {
-      setUri(alphabet);
-    }
   };
 
   useEffect(() => {
-    fetch(uri)
+    fetch(API)
       .then(response => response.json())
       .then(result => {
         setMovieList(result);
-      })
-      .catch(() => {
-        alert('문제발생');
       });
-  }, [uri]);
+  }, [API]);
 
   return (
     <div className="movieList">
@@ -53,7 +44,9 @@ const MovieList = () => {
         </div>
         <div className="listContainer">
           <ol className="listWrap">
-            <List />
+            {movieList.map(movie => (
+              <List key={movie.id} movie={movie} />
+            ))}
           </ol>
         </div>
       </div>
