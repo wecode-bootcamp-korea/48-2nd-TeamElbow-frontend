@@ -5,7 +5,7 @@
     "theater": [
       {
         "id": 1,
-        "name": "1관",
+        "theaterId": "1관",
         "timeList": [
           { "id": 1, "time": "12:00", "seat": 130 },
           { "id": 2, "time": "13:00", "seat": 110 },
@@ -14,7 +14,7 @@
       },
       {
         "id": 2,
-        "name": "2관",
+        "theaterId": "2관",
         "timeList": [
           { "id": 4, "time": "12:00", "seat": 130 },
           { "id": 5, "time": "13:00", "seat": 110 },
@@ -29,7 +29,7 @@
     "theater": [
       {
         "id": 1,
-        "name": "1관",
+        "theaterId": "1관",
         "timeList": [
           { "id": 7, "time": "12:00", "seat": 130 },
           { "id": 8, "time": "13:00", "seat": 110 },
@@ -38,7 +38,7 @@
       },
       {
         "id": 2,
-        "name": "2관",
+        "theaterId": "2관",
         "timeList": [
           { "id": 10, "time": "12:00", "seat": 130 },
           { "id": 11, "time": "13:00", "seat": 110 },
@@ -53,7 +53,7 @@
     "theater": [
       {
         "id": 1,
-        "name": "1관",
+        "theaterId": "1관",
         "timeList": [
           { "id": 13, "time": "12:00", "seat": 130 },
           { "id": 14, "time": "13:00", "seat": 110 },
@@ -62,7 +62,7 @@
       },
       {
         "id": 2,
-        "name": "2관",
+        "theaterId": "2관",
         "timeList": [
           { "id": 16, "time": "12:00", "seat": 130 },
           { "id": 17, "time": "13:00", "seat": 110 },

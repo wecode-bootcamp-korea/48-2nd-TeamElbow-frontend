@@ -182,10 +182,10 @@ const Booking = () => {
             <ul>
               {dateList
                 .find(dateData => dateData.id == dateId)
-                ?.theater.map(({ id, name, timeList }) => {
+                ?.theater.map(({ id, theaterId, timeList }) => {
                   return (
                     <div key={id}>
-                      <p>{name}</p>
+                      <p>{theaterId}관</p>
                       {timeList.map(({ id, time, seat }) => {
                         return (
                           <li key={id}>
