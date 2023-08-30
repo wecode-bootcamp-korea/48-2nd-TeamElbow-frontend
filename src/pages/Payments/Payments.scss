@@ -1,10 +1,109 @@
 @import '../../styles/variables.scss';
 
 .payments {
+  width: 600px;
   padding: 50px 0;
+
   h1 {
     font-size: 24px;
     padding-bottom: 14px;
-    border-bottom: 1px solid $grey99;
+    // border-bottom: 1px solid $grey99;
+  }
+
+  .paymentsInfo {
+    .myPoint {
+      .usePoint {
+        .availablePoints {
+          font-size: 14px;
+          font-weight: bold;
+          background-color: $grey88;
+          color: $grey66;
+          border-radius: 5px;
+          padding: 10px 5px 10px 15px;
+
+          span {
+            color: $grey66;
+          }
+        }
+
+        .deduction {
+          width: 100px;
+          padding: 3px;
+          font-size: 14px;
+          margin: 0 8px;
+          border: 1px solid $grey66;
+          border-radius: 3px;
+          text-align: right;
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .usingPoint {
+          padding-left: 15px;
+          margin: 20px 0 40px;
+        }
+
+        .paymentItem {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 20px 0;
+          padding: 20px 10px;
+          background-color: $grey88;
+          border-radius: 5px;
+        }
+        .select {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 20px 0;
+          padding: 20px 10px;
+          background-color: $theme-color;
+          color: $white;
+        }
+      }
+
+      .useCard {
+        .paymentItem {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 20px 0;
+          padding: 20px 10px;
+          background-color: $grey88;
+          border-radius: 5px;
+          color: $white;
+        }
+
+        .select {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 20px 0;
+          padding: 20px 10px;
+          background-color: $theme-color;
+          color: $white;
+        }
+      }
+    }
+    .checkPayments {
+      margin-top: 60px;
+      text-align: right;
+      border-top: 1px solid $grey99;
+      padding-top: 40px;
+
+      .aboutSelectMovie {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      button {
+        margin-top: 20px;
+        padding: 15px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        width: 150px;
+        background-color: $theme-color;
+        border: none;
+        border-radius: 5px;
+        color: $white;
+      }
+    }
   }
 }
