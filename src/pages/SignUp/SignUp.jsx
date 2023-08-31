@@ -6,20 +6,20 @@ import './SignUp.scss';
 const SignUp = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
-    memberId: '',
+    memberSignInId: '',
     memberPassword: '',
     memberName: '',
-    memberPhonenumber: '',
+    memberPhoneNumber: '',
     memberEmail: '',
     memberBirthday: '',
     memberGender: '',
   });
 
   const {
-    memberId,
+    memberSignInId,
     memberPassword,
     memberName,
-    memberPhonenumber,
+    memberPhoneNumber,
     memberEmail,
     memberBirthday,
     memberGender,
@@ -28,7 +28,7 @@ const SignUp = () => {
   const onClickSignup = e => {
     e.preventDefault();
 
-    fetch('API주소', {
+    fetch('http://10.58.52.203:3000/member/signup', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -38,6 +38,7 @@ const SignUp = () => {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'CreateMember') {
+          console.log('should navigate');
           navigate('/login');
         }
       });
@@ -48,14 +49,14 @@ const SignUp = () => {
     setUserInfo(prev => ({ ...prev, [name]: value }));
   };
 
-  const isIdValid = memberId.length >= 6;
+  const isIdValid = memberSignInId.length >= 6;
   const isPasswordValid =
     memberPassword.length >= 8 &&
-    /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(memberPassword);
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+      memberPassword,
+    );
   const isNameValid = memberName.length >= 2;
-  const isPhonenumberValid = /^01[0-9]-[0-9]{4}-[0-9]{4}$/.test(
-    memberPhonenumber,
-  );
+  const isPhonenumberValid = /^01[0-9]{9}$/.test(memberPhoneNumber);
   const isEmailValid =
     /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/.test(
       memberEmail,
@@ -70,9 +71,9 @@ const SignUp = () => {
     memberBirthday !== '' &&
     memberEmail.trim() !== '' &&
     memberPassword.trim() !== '' &&
-    memberId.trim() !== '' &&
+    memberSignInId.trim() !== '' &&
     memberName.trim() !== '' &&
-    memberPhonenumber.trim() !== '' &&
+    memberPhoneNumber.trim() !== '' &&
     memberGender !== '' &&
     memberBirthday.trim() !== '';
 
@@ -83,35 +84,35 @@ const SignUp = () => {
         이미 계정이 있으신가요?
       </Link>
       <form className="signUpWrap" onChange={handleInput}>
-        <label htmlFor="memberId">아이디</label>
-        {memberId && !isIdValid && (
+        <label htmlFor="memberSignInId">아이디</label>
+        {memberSignInId && !isIdValid && (
           <span className="error">6자 이상 입력해주세요.</span>
         )}
-        <input name="memberId" type="text" placeholder="6자 이상" />
+        <input name="memberSignInId" type="text" placeholder="6자 이상" />
         <label htmlFor="memberPassword">패스워드</label>
         {memberPassword && !isPasswordValid && (
           <span className="error">
-            숫자, 특수문자를 포함하여 8자 이상 입력해주세요.
+            대소문자, 숫자, 특수문자를 포함하여 8자 이상 입력해주세요.
           </span>
         )}
         <input
           name="memberPassword"
           type="password"
-          placeholder="특수문자를 포함하여 8자 이상"
+          placeholder="대소문자, 숫자, 특수문자를 포함하여 8자 이상"
         />
         <label htmlFor="memberName">이름</label>
         {memberName && !isNameValid && (
           <span className="error">두 글자 이상 입력해주세요.</span>
         )}
         <input name="memberName" type="text" placeholder="" />
-        <label htmlFor="memberPhonenumber">휴대폰번호</label>
-        {memberPhonenumber && !isPhonenumberValid && (
-          <span className="error">-를 포함하여 작성해주세요.</span>
+        <label htmlFor="memberPhoneNumber">휴대폰번호</label>
+        {memberPhoneNumber && !isPhonenumberValid && (
+          <span className="error">-를 제외하고 작성해주세요.</span>
         )}
         <input
-          name="memberPhonenumber"
+          name="memberPhoneNumber"
           type="text"
-          placeholder="-를 포함하여 휴대폰번호를 입력해주세요."
+          placeholder="-를 제외하고 휴대폰번호를 입력해주세요."
         />
         <label htmlFor="memberEmail">이메일</label>
         {memberEmail && !isEmailValid && (

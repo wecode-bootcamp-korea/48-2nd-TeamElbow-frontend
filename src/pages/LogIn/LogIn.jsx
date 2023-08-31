@@ -6,7 +6,7 @@ import './LogIn.scss';
 const LogIn = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
-    memberId: '',
+    memberSignInId: '',
     memberPassword: '',
   });
 
@@ -18,13 +18,13 @@ const LogIn = () => {
   const handleLogin = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.244:3000/member/signin', {
+    fetch('http://10.58.52.222:3000/member/signin', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        memberId: userInfo.memberId,
+        memberSignInId: userInfo.memberSignInId,
         memberPassword: userInfo.memberPassword,
       }),
     })
@@ -44,8 +44,8 @@ const LogIn = () => {
       <form className="logInWrap" onSubmit={handleLogin}>
         <h1>로그인</h1>
         <input
-          name="memberId"
-          value={userInfo.memberId}
+          name="memberSignInId"
+          value={userInfo.memberSignInId}
           onChange={handleInput}
           type="text"
           placeholder="아이디를 입력해주세요."
