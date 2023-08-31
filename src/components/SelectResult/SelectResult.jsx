@@ -7,6 +7,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
   const [movie, setMovie] = useState({});
   const [price, setPrice] = useState({});
   const { screeningId } = useParams();
+  const bookingId = movie.bookingId;
 
   const navigate = useNavigate();
 
@@ -41,8 +42,6 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
       return;
     }
-
-    const bookingId = movie.bookingId;
 
     fetch('API', {
       method: 'POST',
@@ -97,7 +96,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
     <div className="selectResult">
       <div className="movieInfo">
         <div className="movieTitle">
-          <span>{movie.movieMinimumWatchingAge}</span>
+          <span>{movie.minimumWatchingAge}</span>
           <p>{movie.movieTitle}</p>
         </div>
         <div className="dateTime">
