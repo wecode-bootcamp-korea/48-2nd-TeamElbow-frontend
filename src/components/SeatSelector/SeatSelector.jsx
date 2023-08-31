@@ -27,6 +27,8 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
       const idx = arr.indexOf(clickedSeat);
       arr.splice(idx, 1);
       setSelectedSeat(arr);
+    } else if (0 === totalCount) {
+      return alert('인원수를 선택해주세요.');
     } else if (selectedSeat.length >= totalCount) {
       return alert('최대 선택 가능 좌석 수를 초과하였습니다.');
     } else {
