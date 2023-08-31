@@ -9,7 +9,7 @@ const MovieDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://10.58.52.128:3000/movies/detail?movieId=${movieId}`)
+    fetch(`http://10.58.52.203:3000/movies/detail?movieId=${movieId}`)
       .then(res => res.json())
       .then(result => setMovie(result));
   }, []);
@@ -28,7 +28,7 @@ const MovieDetail = () => {
         <p className="movieTitle">{movie.movieTitle}</p>
         <div className="rateRank">
           <span className="rate">예매율 {movie.bookingRatePercent}%</span>
-          <span className="rank">박스오피스 1위</span>
+          <span className="rank">박스오피스 {movie.boxofficeRanking}위</span>
         </div>
         <div className="movieSpec">
           <p>감독 : {movie.movieDirector}</p>
@@ -36,6 +36,7 @@ const MovieDetail = () => {
           <p>등급 : {movie.movieMinimumWatchingAge} 관람가</p>
           <p>러닝타임 : {movie.movieRunningTimeMinute}분</p>
           <p>언어 : {movie.movieLanguage}</p>
+          <p>개봉일 : {movie.movieReleaseDate}</p>
           <p className="spacingPhrase">줄거리 : {movie.movieDescription}</p>
           <button
             className="btnBooking"

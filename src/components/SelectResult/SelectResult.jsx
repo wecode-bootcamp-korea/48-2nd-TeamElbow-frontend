@@ -7,11 +7,12 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
   const [movie, setMovie] = useState({});
   const [price, setPrice] = useState({});
   const { screeningId } = useParams();
+
   const navigate = useNavigate();
 
   const movieInformation = async () => {
     const response = await fetch(
-      `http://127.0.0.1:3000/booking/movieInformation?screeningId=${screeningId}`,
+      `http://10.58.52.203:3000/booking/movieInformation?screeningId=${screeningId}`,
     );
     const result = await response.json();
     setMovie(result);
@@ -19,7 +20,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const ticketPrice = async () => {
     const response = await fetch(
-      'http://127.0.0.1:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
+      'http://10.58.52.203:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
     );
     const result = await response.json();
     setPrice(result);
@@ -41,6 +42,8 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
       return;
     }
 
+    const bookingId = movie.bookingId;
+
     fetch('API', {
       method: 'POST',
       headers: {
@@ -56,7 +59,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
       .then(response => response.json())
       .then(result => {
         if (result.message === 'SUCCESS') {
-          navigate('/payments');
+          navigate(`/payments/${bookingId}`);
         } else {
           alert('좌석을 다시 선택하세요');
         }
@@ -65,7 +68,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
-    const isEarlybird = movie.isEarlybird;
+    const isEarlybird = '${movie.isEarlybird}';
 
     Object.keys(audienceType).forEach(selectedAudienceKey => {
       const audiencePrice = isEarlybird
