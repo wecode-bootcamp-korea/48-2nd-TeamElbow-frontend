@@ -7,22 +7,15 @@ const MyTicket = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://10.58.52.244:3000/member/signin', {
-      method: 'POST',
+    fetch('API', {
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
+        authorization: token,
       },
-      body: JSON.stringify({
-        memberId: '',
-      }),
     }).then(result => {
       if (result.message === 'SUCCESS') {
-        fetch('bookingAPI')
-          .then(res => res.json())
-          .then(result => setBooking(result))
-          .catch(error => {
-            console.error('Error fetching booking:', error);
-          });
+        setBooking(result);
       } else {
         alert('예매 내역이 없습니다.');
         navigate('/');
