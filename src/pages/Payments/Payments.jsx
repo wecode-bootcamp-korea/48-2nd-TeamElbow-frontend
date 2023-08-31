@@ -5,7 +5,6 @@ import './Payments.scss';
 const ERROR_MESSAGES_MAP = {
   LOGIN_REQUIRED: '로그인이 필요합니다.',
   TOKEN_EXPIRED: '로그인이 필요합니다.',
-  HUNGRY: '밥 주세요.. 배고파요.. 떡볶이.. 순대..',
 };
 
 const Payments = () => {
@@ -55,12 +54,12 @@ const Payments = () => {
     setDeductionAmount(inputPoint);
 
     if (inputPoint === totalPrice) {
-      console.log('결제가능');
       setIsInputValid(inputPoint === totalPrice);
     } else {
-      console.log('잘못된 포인트 입력');
-
       setIsInputValid(false);
+    }
+    if (inputPoint > totalPrice) {
+      alert('보유한 포인트보다 많습니다.');
     }
   };
 

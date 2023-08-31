@@ -46,6 +46,7 @@ const SignUp = () => {
         }
 
         if (result.message === 'createMember') {
+          navigate('/login');
         }
       });
   };
