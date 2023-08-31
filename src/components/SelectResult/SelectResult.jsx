@@ -31,6 +31,16 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
   }, []);
 
   const goPayments = () => {
+    const isAllSelected =
+      Object.values(counters).reduce((acc, cur) => cur + acc, 0) ===
+        selectedSeat.length && selectedSeat.length !== 0;
+
+    if (!isAllSelected) {
+      alert('인원과 좌석을 선택해 주세요.');
+
+      return;
+    }
+
     fetch('API', {
       method: 'POST',
       headers: {
@@ -119,7 +129,10 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
         <div className="price">
           <p>결제금액</p>
           <p>
-            <span className="colored">{calculateTotalPrice()}</span>원
+            <span className="colored">
+              {calculateTotalPrice().toLocaleString()}
+            </span>
+            원
           </p>
         </div>
       </div>
