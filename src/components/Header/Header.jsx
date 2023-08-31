@@ -53,7 +53,7 @@ const Header = () => {
     <div className="header">
       <div className="contents">
         <h1 className="logo" onClick={goHome}>
-          <img src="/images/logo.png" alt="씨네마 엘보우" />
+          <img src="/images/logo.png" alt="씨네마 엘보우 로고" />
         </h1>
         <ul>
           {isLogin ? (
@@ -61,6 +61,11 @@ const Header = () => {
               <li onClick={goLogOut}>
                 <img src="/images/icon_login.png" alt="로그인" />
                 <span>로그아웃</span>
+              </li>
+
+              <li onClick={goMyTicket}>
+                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
+                <span>마이티켓</span>
               </li>
             </>
           ) : (
@@ -72,6 +77,10 @@ const Header = () => {
               <li onClick={goSignUp}>
                 <img src="/images/icon_signup.png" alt="회원가입" />
                 <span>회원가입</span>
+              </li>
+              <li onClick={goMyTicket}>
+                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
+                <span>마이티켓</span>
               </li>
             </>
           )}
