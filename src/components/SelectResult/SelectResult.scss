@@ -1,0 +1,131 @@
+@import '../../styles/variables.scss';
+
+.selectResult {
+  position: relative;
+  padding: 20px 20px;
+  width: 330px;
+  height: 100%;
+
+  .movieInfo {
+    margin-bottom: 20px;
+    border-bottom: 1px solid $grey88;
+
+    .movieTitle {
+      margin-bottom: 6px;
+      line-height: 1.2;
+
+      span {
+        margin-bottom: 6px;
+        padding: 5px;
+        display: inline-block;
+        background-color: yellowgreen;
+        border-radius: 5px;
+        color: $white;
+        font-size: 11px;
+      }
+
+      p {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+
+    .dateTime {
+      margin-bottom: 10px;
+      font-size: 14px;
+
+      p {
+        display: inline-block;
+        color: $grey66;
+
+        &:first-child {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .moviePoster {
+      margin-bottom: 20px;
+      width: 100%;
+      height: auto;
+
+      img {
+        margin: 0 auto;
+        width: 130px;
+        height: 160px;
+      }
+    }
+  }
+
+  .seatsNumber {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $grey88;
+    font-size: 15px;
+
+    p {
+      margin-bottom: 6px;
+    }
+
+    span {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 7px 6px;
+      border-radius: 50%;
+      color: $theme-color;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+  }
+
+  .payInfo {
+    display: flex;
+    flex-direction: column;
+
+    .count {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+      p {
+        flex-direction: row;
+
+        .colored {
+          margin-right: 10px;
+          color: $theme-color;
+          font-weight: 600;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
+  .buttonWrap {
+    position: absolute;
+    width: calc(100% - 40px);
+    bottom: 20px;
+
+    button {
+      padding: 10px 0;
+      width: 50%;
+      background-color: $white;
+      border: 1px solid $grey88;
+      color: $grey66;
+      font-size: 14px;
+
+      &:last-child {
+        border-left: 0;
+      }
+
+      &:hover {
+        background-color: $theme-color;
+        color: $white;
+        font-weight: 500;
+      }
+    }
+  }
+}
