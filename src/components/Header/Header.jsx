@@ -62,11 +62,6 @@ const Header = () => {
                 <img src="/images/icon_login.png" alt="로그인" />
                 <span>로그아웃</span>
               </li>
-
-              <li onClick={goMyTicket}>
-                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
-                <span>마이티켓</span>
-              </li>
             </>
           ) : (
             <>
@@ -77,10 +72,6 @@ const Header = () => {
               <li onClick={goSignUp}>
                 <img src="/images/icon_signup.png" alt="회원가입" />
                 <span>회원가입</span>
-              </li>
-              <li onClick={goMyTicket}>
-                <img src="images/icon_myticket.png" alt="마이티켓 아이콘" />
-                <span>마이티켓</span>
               </li>
             </>
           )}
