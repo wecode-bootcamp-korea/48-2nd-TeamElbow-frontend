@@ -11,7 +11,7 @@ const MyTicket = () => {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        authorization: token,
+        authorization: localStorage.getItem('token'),
       },
     }).then(result => {
       if (result.message === 'SUCCESS') {

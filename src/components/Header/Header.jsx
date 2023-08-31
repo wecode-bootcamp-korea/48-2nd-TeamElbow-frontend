@@ -37,7 +37,7 @@ const Header = () => {
   // TODO: 핵심 기능 구현 후 추가로 구현할 것
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = !!localStorage.getItem('authToken');
+      const isLoggedIn = !!localStorage.getItem('token');
       setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
