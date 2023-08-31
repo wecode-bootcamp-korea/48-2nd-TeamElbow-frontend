@@ -3,16 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import './MyTicket.scss';
 
 const MyTicket = () => {
+  const [booking, setBooking] = useState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('http://10.58.52.244:3000/member/signin', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        memberId: userInfo.memberId,
+      }),
+    }).then(result => {
+      if (result.message === 'SUCCESS') {
+        fetch('bookingAPI')
+          .then(res => res.json())
+          .then(result => setBooking(result))
+          .catch(error => {
+            console.error('Error fetching booking:', error);
+          });
+      } else {
+        alert('예매 내역이 없습니다.');
+        navigate('/');
+      }
+    });
+  }, []);
 
   return (
     <div className="myTicket contents">
       <div className="boxWrap">
         <div className="qrWrap">
           <div className="title">
-            <span className="age">12세 이상</span>
-            <p>악마는 구라다를 입는다</p>
-            <span>2023.9.1 (금) 18:15</span>
+            <span className="age">{booking.movieMinimumWatchingAge}</span>
+            <p>{booking.movieTitle}</p>
+            <span>
+              {booking.screeningDate} {booking.screeningTime}
+            </span>
           </div>
           <div className="qr">
             <img src="/images/qr-code.png" alt="qr" />
@@ -20,16 +47,19 @@ const MyTicket = () => {
         </div>
         <div className="detailInfo">
           <p>
-            예매번호<span>9626-274-22022</span>
+            예매번호<span>{booking.bookingNumber}</span>
           </p>
           <p>
-            관람인원<span>성인 2명</span>
+            관람인원
+            <span>
+              {booking.audienceType} {booking.counters}
+            </span>
           </p>
           <p>
-            좌석정보<span>G열 9~10</span>
+            좌석정보<span>{booking.seatId}</span>
           </p>
           <p>
-            결제정보<span>28,000원</span>
+            결제정보<span>{booking.totalPrice}</span>
           </p>
         </div>
         <div className="notice">
