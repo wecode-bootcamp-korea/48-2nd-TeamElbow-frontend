@@ -36,7 +36,7 @@ const Header = () => {
 
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = !!localStorage.getItem('authToken');
+      const isLoggedIn = !!localStorage.getItem('token');
       setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
