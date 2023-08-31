@@ -37,8 +37,8 @@ const SignUp = () => {
     })
       .then(response => response.json())
       .then(result => {
-        if (result.message === 'CreateMember') {
-          console.log('should navigate');
+        if (result.message === 'createMember') {
+          console.log('메롱');
           navigate('/login');
         }
       });

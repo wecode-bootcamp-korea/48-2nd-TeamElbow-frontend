@@ -1,60 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Payments.scss';
 
 const Payments = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     memberPoint: '',
     totalPrice: '',
-    deductionPoint: 0,
+    deductionPoint: '',
+    bookingId: '',
   });
-  // const [usePoint, setUsePoint] = useState('');
 
   useEffect(() => {
-    fetch('api주소').then(res => res.json())(result =>
-      setUserInfo(prev => ({
-        ...prev,
-        memberPoint: result.memberPoint,
-        totalPrice: result.totalPrice,
-      })),
-    );
+    fetch('/data/userInfo.json')
+      .then(res => res.json())
+      .then(data => {
+        setUserInfo({
+          memberPoint: data.memberPoint,
+          totalPrice: data.totalPrice,
+          deductionPoint: '',
+          bookingId: data.bookingId,
+        });
+      });
   }, []);
 
-  const handleInput = e => {
-    const { value, name } = e.target;
-    setUserInfo(prev => ({ ...prev, [name]: value }));
-  };
+  const [isInputValid, setIsInputValid] = useState(false);
+  // const point = parseFloat(userInfo.deductionPoint);
+  const totalPrice = parseFloat(userInfo.totalPrice);
 
-  // const memberPoint = userInfo.memberPoint;
-  // if (memberPoint > 0 && memberPoint <= )
+  const handleInputPoint = e => {
+    e.preventDefault();
+    const inputPoint = parseFloat(e.target.value);
+
+    if (inputPoint === totalPrice) {
+      console.log('결제가능');
+      setIsInputValid(true);
+    } else {
+      console.log('잘못된 포인트 입력');
+      setIsInputValid(false);
+    }
+  };
 
   const completeBooking = e => {
     e.preventDefault();
 
-    const { deductionPoint } = userInfo;
-    if (deductionPoint > 0 && deductionPoint <= userInfo.memberPoint) {
-      // 여기서 API로 포인트 차감 및 결제를 처리하는 로직을 추가할 수 있습니다.
-      // 현재 코드는 콘솔에 결과만 출력합니다.
-      console.log(`차감된 포인트: ${deductionPoint}`);
-      console.log(`남은 포인트: ${userInfo.memberPoint - deductionPoint}`);
-    } else {
-      console.log('잘못된 포인트 입력');
-    }
-
     fetch('API주소', {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(userInfo.memberPoint),
+      body: JSON.stringify({
+        bookingId: userInfo.bookingId,
+        totalPrice: userInfo.totalPrice,
+      }),
     })
-      .then(response => response.json())
+      .then(res => res.json())
       .then(result => {
-        console.log(result);
+        console.log('결제성공:', result);
+        navigate('/my-ticket');
       });
   };
 
   return (
-    <div className="payments contents">
+    <div className="payments">
       <h1>결제</h1>
       <div className="paymentsInfo">
         <div className="myPoint">
@@ -62,17 +70,16 @@ const Payments = () => {
             <p className="paymentItem select">포인트결제</p>
             <p className="availablePoints">
               사용 가능한 포인트
-              {/* <span> {userInfo.memberPoint}</span> */}
-              <span> 1000점</span>
+              <span> {userInfo.memberPoint}</span>
             </p>
             <div className="usingPoint">
               <span>사용할 포인트</span>
               <input
-                type="text"
-                onChange={handleInput}
+                type="number"
+                onChange={handleInputPoint}
                 name="deductionPoint"
-                value="deductionPoint"
                 className="deduction"
+                min="1"
               />
               점
             </div>
@@ -86,10 +93,11 @@ const Payments = () => {
         </div>
         <div className="checkPayments">
           <div className="aboutSelectMovie">
-            최종결제금액 <span>70,000원</span>
-            {/* 최종결제금액 <span>{userInfo.totalPrice}</span> */}
+            최종결제금액 <span>{userInfo.totalPrice}</span>
           </div>
-          <button onClick={completeBooking}>결제</button>
+          <button onClick={completeBooking} disabled={!isInputValid}>
+            결제
+          </button>
         </div>
         <p></p>
       </div>

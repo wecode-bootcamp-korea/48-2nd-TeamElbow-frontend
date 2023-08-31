@@ -1,8 +1,9 @@
 @import '../../styles/variables.scss';
 
 .payments {
-  width: 600px;
+  width: 400px;
   padding: 50px 0;
+  margin: 0 auto;
 
   h1 {
     font-size: 24px;
@@ -34,9 +35,11 @@
           border: 1px solid $grey66;
           border-radius: 3px;
           text-align: right;
-          &:focus {
-            outline: none;
-          }
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
 
         .usingPoint {
@@ -103,6 +106,12 @@
         border: none;
         border-radius: 5px;
         color: $white;
+
+        &:disabled {
+          background-color: $grey66;
+          color: $white;
+          cursor: not-allowed;
+        }
       }
     }
   }
