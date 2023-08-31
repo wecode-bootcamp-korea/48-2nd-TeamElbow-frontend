@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './MyTicket.scss';
 
 const MyTicket = () => {
-  const [booking, setBooking] = useState();
+  const [booking, setBooking] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const MyTicket = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        memberId: userInfo.memberId,
+        memberId: '',
       }),
     }).then(result => {
       if (result.message === 'SUCCESS') {
@@ -40,6 +40,7 @@ const MyTicket = () => {
             <span>
               {booking.screeningDate} {booking.screeningTime}
             </span>
+            <span>{booking.theaterName}</span>
           </div>
           <div className="qr">
             <img src="/images/qr-code.png" alt="qr" />
