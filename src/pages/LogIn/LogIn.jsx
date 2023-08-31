@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './LogIn.scss';
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [userInfo, setUserInfo] = useState({
     memberSignInId: '',
     memberPassword: '',
@@ -32,7 +34,7 @@ const LogIn = () => {
       .then(result => {
         if (result.accessToken) {
           localStorage.setItem('token', result.accessToken);
-          navigate('/');
+          navigate(location.state?.from || '/');
         } else {
           alert('아이디 또는 비밀번호가 일치하지 않습니다.');
         }
