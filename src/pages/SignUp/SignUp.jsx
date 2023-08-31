@@ -37,9 +37,15 @@ const SignUp = () => {
     })
       .then(response => response.json())
       .then(result => {
-        if (result.message === 'CreateMember') {
-          console.log('should navigate');
-          navigate('/login');
+        if (
+          result.message === 'duplicated member' ||
+          result.message === 'dataSource Error'
+        ) {
+          alert('이미 존재하는 계정입니다.');
+          return;
+        }
+
+        if (result.message === 'createMember') {
         }
       });
   };
