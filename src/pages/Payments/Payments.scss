@@ -93,8 +93,20 @@
       padding-top: 40px;
 
       .aboutSelectMovie {
-        font-size: 20px;
-        font-weight: bold;
+        .schedule {
+          color: $grey66;
+        }
+        .totalPrice {
+          font-size: 20px;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+        .warning {
+          margin-top: 10px;
+          font-size: 14px;
+          font-weight: normal;
+          color: $red;
+        }
       }
       button {
         margin-top: 20px;
