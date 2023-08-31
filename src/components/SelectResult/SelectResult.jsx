@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './SelectResult.scss';
 
-const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
+const SelectResult = ({ audienceType, counters, selectedSeat }) => {
   const token = localStorage.getItem('token');
   const [movie, setMovie] = useState({});
   const [price, setPrice] = useState({});
@@ -26,8 +26,6 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
     );
   };
 
-  console.log();
-
   useEffect(() => {
     movieInformation()
       .then(res => res.json())
@@ -39,26 +37,26 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
   }, []);
 
   const goPayments = () => {
-    // fetch('API', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-type': 'application/json',
-    //  authorization: token
-    //   },
-    //   body: JSON.stringify({
-    //     seatId: selectedSeatsId,
-    //     totalPrice: totalPrice,
-    //     screeningId: movie.screeningId,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     if (result.message === 'SUCCESS') {
-    //       navigate('/payments');
-    //     } else {
-    //       alert('좌석을 다시 선택하세요');
-    //     }
-    //   });
+    fetch('API', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        seatId: selectedSeat,
+        totalPrice: calculateTotalPrice(),
+        screeningId: movie.screeningId,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'SUCCESS') {
+          navigate('/payments');
+        } else {
+          alert('좌석을 다시 선택하세요');
+        }
+      });
   };
 
   const calculateTotalPrice = () => {
@@ -78,13 +76,13 @@ const SelectResult = ({ audienceType, counters, selectedSeat, rowData }) => {
   const morningPrices = {
     normal: 18000,
     teenager: 8000,
-    concession: 8000,
+    senior: 8000,
   };
 
   const regularPrices = {
     normal: 20000,
     teenager: 10000,
-    concession: 10000,
+    senior: 10000,
   };
 
   return (
