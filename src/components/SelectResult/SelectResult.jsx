@@ -14,26 +14,20 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
       `http://127.0.0.1:3000/booking/movieInformation?screeningId=${screeningId}`,
     );
     const result = await response.json();
-
-    setMovie({ ...result, isEarlybird: result.isEarlybird });
-
-    return result;
+    setMovie(result);
   };
 
   const ticketPrice = async () => {
-    return await fetch(
+    const response = await fetch(
       'http://127.0.0.1:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
     );
+    const result = await response.json();
+    setPrice(result);
   };
 
   useEffect(() => {
-    movieInformation()
-      .then(res => res.json())
-      .then(result => setMovie(result));
-
-    ticketPrice()
-      .then(res => res.json())
-      .then(result => setPrice(result));
+    movieInformation();
+    ticketPrice();
   }, []);
 
   const goPayments = () => {
@@ -70,17 +64,18 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
       totalPrice += audiencePrice * counters[selectedAudienceKey];
     });
+
     return totalPrice;
   };
 
   const morningPrices = {
-    normal: 18000,
+    adult: 18000,
     teenager: 8000,
     senior: 8000,
   };
 
   const regularPrices = {
-    normal: 20000,
+    adult: 20000,
     teenager: 10000,
     senior: 10000,
   };

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './SelectSeats.scss';
+import React, { useState } from 'react';
 import SelectResult from '../../components/SelectResult/SelectResult';
 import CountSelector from '../../components/CountSelector/CountSelector';
 import SeatSelector from '../../components/SeatSelector/SeatSelector';
+import './SelectSeats.scss';
+
+const DEFAULT_COUNTERS = {
+  adult: 0,
+  teenager: 0,
+  senior: 0,
+};
 
 const SelectSeats = () => {
   const [selectedSeat, setSelectedSeat] = useState([]);
-  const [counters, setCounters] = useState({
-    adult: 0,
-    teenager: 0,
-    senior: 0,
-  });
+  const [counters, setCounters] = useState(DEFAULT_COUNTERS);
 
   const audienceType = {
     adult: '성인',
@@ -21,11 +22,7 @@ const SelectSeats = () => {
 
   const handleReset = () => {
     setSelectedSeat([]);
-    setCounters({
-      adult: 0,
-      teenager: 0,
-      senior: 0,
-    });
+    setCounters(DEFAULT_COUNTERS);
   };
 
   const totalCount = counters.adult + counters.teenager + counters.senior;
@@ -44,18 +41,18 @@ const SelectSeats = () => {
             audienceType={audienceType}
             counters={counters}
             setCounters={setCounters}
-          ></CountSelector>
+          />
           <SeatSelector
             selectedSeat={selectedSeat}
             setSelectedSeat={setSelectedSeat}
             totalCount={totalCount}
-          ></SeatSelector>
+          />
         </div>
         <SelectResult
           audienceType={audienceType}
           counters={counters}
           selectedSeat={selectedSeat}
-        ></SelectResult>
+        />
       </div>
     </div>
   );
