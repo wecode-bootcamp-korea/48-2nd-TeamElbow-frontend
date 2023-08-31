@@ -13,14 +13,16 @@ const MyTicket = () => {
         'Content-type': 'application/json',
         authorization: localStorage.getItem('token'),
       },
-    }).then(result => {
-      if (result.message === 'SUCCESS') {
-        setBooking(result);
-      } else {
-        alert('예매 내역이 없습니다.');
-        navigate('/');
-      }
-    });
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'SUCCESS') {
+          setBooking(result);
+        } else {
+          alert('예매 내역이 없습니다.');
+          navigate('/');
+        }
+      });
   }, []);
 
   return (
