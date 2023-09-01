@@ -6,7 +6,9 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const [seatsData, setSeatsData] = useState([]);
   const { screeningId } = useParams();
   useEffect(() => {
-    fetch(`http://10.58.52.212:3000/booking/seatsInformation?screeningId=2`)
+    fetch(
+      `http://10.58.52.212:3000/booking/seatsInformation?screeningId=${screeningId}`,
+    )
       .then(res => res.json())
       .then(result => setSeatsData(result));
   }, []);
