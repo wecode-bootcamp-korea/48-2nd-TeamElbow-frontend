@@ -190,6 +190,11 @@
             background-color: $theme-color;
             color: $white;
             font-weight: bold;
+            &:disabled {
+              background-color: $grey66;
+              color: $white;
+              cursor: not-allowed;
+            }
           }
         }
       }

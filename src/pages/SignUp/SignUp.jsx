@@ -28,7 +28,7 @@ const SignUp = () => {
   const onClickSignup = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.203:3000/member/signup', {
+    fetch('http://10.58.52.212:3000/member/signup', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -37,8 +37,15 @@ const SignUp = () => {
     })
       .then(response => response.json())
       .then(result => {
-        if (result.message === 'CreateMember') {
-          console.log('should navigate');
+        if (
+          result.message === 'duplicated member' ||
+          result.message === 'dataSource Error'
+        ) {
+          alert('이미 존재하는 계정입니다.');
+          return;
+        }
+
+        if (result.message === 'createMember') {
           navigate('/login');
         }
       });
