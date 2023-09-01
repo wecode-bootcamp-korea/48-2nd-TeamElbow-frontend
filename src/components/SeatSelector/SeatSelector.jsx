@@ -14,7 +14,7 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
       .then(result => setSeatsData(result));
   }, []);
 
-  const handleSeatClick = (seatRow, seatId, seatColumn, seatBooked) => {
+  const handleSeatClick = (seatRow, seatId, seatColumn) => {
     const arr = [...selectedSeat];
     const clickedSeat = arr.find(
       seat =>
