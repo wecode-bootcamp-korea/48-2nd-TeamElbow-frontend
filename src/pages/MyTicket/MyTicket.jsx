@@ -16,7 +16,7 @@ const MyTicket = () => {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'SUCCESS') {
+        if (result) {
           setBooking(result);
         } else {
           alert('예매 내역이 없습니다.');
