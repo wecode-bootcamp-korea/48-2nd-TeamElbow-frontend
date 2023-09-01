@@ -73,7 +73,6 @@ const MyTicket = () => {
           </div>
         </div>
       ))}
-      ;
     </div>
   );
 };
