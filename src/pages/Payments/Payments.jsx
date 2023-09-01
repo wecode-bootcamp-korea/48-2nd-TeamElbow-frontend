@@ -18,7 +18,7 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch('/data/userInfo.json', {
+    fetch('http://10.58.52.212:3000', {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('token'),
@@ -39,7 +39,6 @@ const Payments = () => {
           memberPoint: data.memberPoint,
           totalPrice: data.totalPrice,
           deductionPoint: '',
-          // bookingId: data.bookingId,
         });
       });
   }, []);
@@ -50,7 +49,8 @@ const Payments = () => {
   const totalPrice = parseFloat(userInfo.totalPrice);
   const handleInputPoint = e => {
     e.preventDefault();
-    const inputPoint = parseFloat(e.target.value);
+    const inputValue = e.target.value;
+    const inputPoint = parseFloat(inputValue) || 0;
     setDeductionAmount(inputPoint);
 
     if (inputPoint === totalPrice) {
@@ -58,31 +58,26 @@ const Payments = () => {
     } else {
       setIsInputValid(false);
     }
-    if (inputPoint > totalPrice) {
-      alert('보유한 포인트보다 많습니다.');
-    }
   };
 
   const completeBooking = e => {
     e.preventDefault();
 
-    useEffect(() => {
-      fetch('API주소', {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          bookingId: bookingId,
-          totalPrice: userInfo.totalPrice,
-        }),
-      })
-        .then(res => res.json())
-        .then(result => {
-          console.log('결제성공:', result);
-          navigate('/my-ticket');
-        });
-    }, [bookingId]);
+    fetch('API주소', {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookingId: bookingId,
+        totalPrice: userInfo.totalPrice,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log('결제성공:', result);
+        navigate('/my-ticket');
+      });
   };
 
   return (
@@ -105,8 +100,14 @@ const Payments = () => {
                 className="deduction"
                 min="1"
                 max={userInfo.totalPrice}
+                defaultValue={0}
               />
               점
+              {deductionAmount > userInfo.totalPrice && (
+                <p className="warning">
+                  입력된 포인트가 보유한 포인트보다 많습니다.
+                </p>
+              )}
             </div>
           </div>
           <div className="useCard">

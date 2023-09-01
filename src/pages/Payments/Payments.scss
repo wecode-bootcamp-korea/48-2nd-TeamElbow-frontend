@@ -45,6 +45,13 @@
         .usingPoint {
           padding-left: 15px;
           margin: 20px 0 40px;
+
+          .warning {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: normal;
+            color: $red;
+          }
         }
 
         .paymentItem {
