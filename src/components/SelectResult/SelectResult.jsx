@@ -96,7 +96,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
     <div className="selectResult">
       <div className="movieInfo">
         <div className="movieTitle">
-          <span>{movie.minimumWatchingAge}</span>
+          <span>{movie.movieMinimumWatchingAge}</span>
           <p>{movie.movieTitle}</p>
         </div>
         <div className="dateTime">
