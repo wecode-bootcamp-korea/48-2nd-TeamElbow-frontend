@@ -103,7 +103,7 @@ const Booking = () => {
     'http://10.58.52.212:3000/booking/list?sortBy=bookingRate';
   const alphabet = 'http://10.58.52.212:3000/booking/list?sortBy=alphabet';
   const [uri, setUri] = useState(bookingRate);
-  // const API = 'API주소';
+
   const handleSort = sortType => {
     setActiveSort(sortType);
     if (sortType === 'bookingRate') {

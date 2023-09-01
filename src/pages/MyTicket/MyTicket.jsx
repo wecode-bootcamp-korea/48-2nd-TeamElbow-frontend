@@ -8,7 +8,7 @@ const MyTicket = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://10.58.52.208:3000/booking/myTicket?memberId=${memberId}`, {
+    fetch(`http://10.58.52.212:3000/booking/myTicket?memberId=${memberId}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',

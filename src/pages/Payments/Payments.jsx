@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './Payments.scss';
 
 const ERROR_MESSAGES_MAP = {
-  LOGIN_REQUIRED: '로그인이 필요합니다.',
-  TOKEN_EXPIRED: '로그인이 필요합니다.',
+  NEED_ACCESS_TOKEN: '로그인이 필요합니다.',
+  INVALID_ACCESS_TOKEN: '로그인이 필요합니다.',
 };
 
 const Payments = () => {
@@ -18,7 +18,7 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch('http://10.58.52.212:3000', {
+    fetch('http://10.58.52.212:3000/booking/pay', {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('token'),
@@ -63,7 +63,7 @@ const Payments = () => {
   const completeBooking = e => {
     e.preventDefault();
 
-    fetch('API주소', {
+    fetch('http://10.58.52.212:3000/booking/pay', {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

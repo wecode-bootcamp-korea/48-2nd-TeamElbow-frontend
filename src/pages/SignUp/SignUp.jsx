@@ -28,7 +28,7 @@ const SignUp = () => {
   const onClickSignup = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.203:3000/member/signup', {
+    fetch('http://10.58.52.212:3000/member/signup', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
