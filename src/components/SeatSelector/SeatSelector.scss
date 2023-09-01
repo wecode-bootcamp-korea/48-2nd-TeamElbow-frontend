@@ -62,6 +62,7 @@
 
     &.booked {
       background-color: $grey88;
+      pointer-events: none;
     }
 
     &.blocked {

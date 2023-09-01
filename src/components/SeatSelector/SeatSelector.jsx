@@ -5,16 +5,16 @@ import './SeatSelector.scss';
 const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const [seatsData, setSeatsData] = useState([]);
   const { screeningId } = useParams();
+
   useEffect(() => {
     fetch(
       `http://10.58.52.212:3000/booking/seatsInformation?screeningId=${screeningId}`,
-    );
-    fetch('/data/seatData.json')
+    )
       .then(res => res.json())
       .then(result => setSeatsData(result));
   }, []);
 
-  const handleSeatClick = (seatRow, seatId, seatColumn) => {
+  const handleSeatClick = (seatRow, seatId, seatColumn, seatBooked) => {
     const arr = [...selectedSeat];
     const clickedSeat = arr.find(
       seat =>
@@ -36,26 +36,39 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
     }
   };
 
-  const Seat = ({ seat, selectedSeat, handleSeatClick, rowData }) => (
-    <div
-      className={`seatBlock ${
-        (seat.isSeatBooked ? 'booked' : 'common',
-        seat.seatType === 'disabled' ? 'booked' : 'common')
-      } ${
-        selectedSeat.some(
-          s =>
-            s.seatId === seat.seatId &&
-            s.seatRow === rowData.seatRow &&
-            s.seatColumn === seat.seatColumn,
-        )
-          ? 'selected'
-          : ''
-      }`}
-      onClick={() =>
-        handleSeatClick(rowData.seatRow, seat.seatId, seat.seatColumn)
-      }
-    ></div>
-  );
+  const Seat = ({ seat, selectedSeat, handleSeatClick, rowData }) => {
+    let seatClassName = 'seatBlock';
+
+    if (seat.isSeatBooked && seat.seatType === 'disabled') {
+      seatClassName += ' booked';
+    } else if (seat.seatType === 'common') {
+      seatClassName += ' common';
+    } else if (seat.seatType === 'disabled') {
+      seatClassName += ' disabled';
+    } else if (seat.isSeatBooked) {
+      seatClassName += ' booked';
+    }
+
+    if (
+      selectedSeat.some(
+        s =>
+          s.seatId === seat.seatId &&
+          s.seatRow === rowData.seatRow &&
+          s.seatColumn === seat.seatColumn,
+      )
+    ) {
+      seatClassName += ' selected';
+    }
+
+    return (
+      <div
+        className={seatClassName}
+        onClick={() =>
+          handleSeatClick(rowData.seatRow, seat.seatId, seat.seatColumn)
+        }
+      ></div>
+    );
+  };
   return (
     <div className="seatSelector">
       <div className="seatsContainer">
