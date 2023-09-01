@@ -3,9 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './Payments.scss';
 
 const ERROR_MESSAGES_MAP = {
-  LOGIN_REQUIRED: '로그인이 필요합니다.',
-  TOKEN_EXPIRED: '로그인이 필요합니다.',
-  HUNGRY: '밥 주세요.. 배고파요.. 떡볶이.. 순대..',
+  NEED_ACCESS_TOKEN: '로그인이 필요합니다.',
+  INVALID_ACCESS_TOKEN: '로그인이 필요합니다.',
 };
 
 const Payments = () => {
@@ -19,7 +18,7 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch('/data/userInfo.json', {
+    fetch('http://10.58.52.212:3000/booking/pay', {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('token'),
@@ -40,7 +39,6 @@ const Payments = () => {
           memberPoint: data.memberPoint,
           totalPrice: data.totalPrice,
           deductionPoint: '',
-          // bookingId: data.bookingId,
         });
       });
   }, []);
@@ -51,15 +49,13 @@ const Payments = () => {
   const totalPrice = parseFloat(userInfo.totalPrice);
   const handleInputPoint = e => {
     e.preventDefault();
-    const inputPoint = parseFloat(e.target.value);
+    const inputValue = e.target.value;
+    const inputPoint = parseFloat(inputValue) || 0;
     setDeductionAmount(inputPoint);
 
     if (inputPoint === totalPrice) {
-      console.log('결제가능');
       setIsInputValid(inputPoint === totalPrice);
     } else {
-      console.log('잘못된 포인트 입력');
-
       setIsInputValid(false);
     }
   };
@@ -67,23 +63,21 @@ const Payments = () => {
   const completeBooking = e => {
     e.preventDefault();
 
-    useEffect(() => {
-      fetch('API주소', {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          bookingId: bookingId,
-          totalPrice: userInfo.totalPrice,
-        }),
-      })
-        .then(res => res.json())
-        .then(result => {
-          console.log('결제성공:', result);
-          navigate('/my-ticket');
-        });
-    }, [bookingId]);
+    fetch('http://10.58.52.212:3000/booking/pay', {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        bookingId: bookingId,
+        totalPrice: userInfo.totalPrice,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log('결제성공:', result);
+        navigate('/my-ticket');
+      });
   };
 
   return (
@@ -106,8 +100,14 @@ const Payments = () => {
                 className="deduction"
                 min="1"
                 max={userInfo.totalPrice}
+                defaultValue={0}
               />
               점
+              {deductionAmount > userInfo.totalPrice && (
+                <p className="warning">
+                  입력된 포인트가 보유한 포인트보다 많습니다.
+                </p>
+              )}
             </div>
           </div>
           <div className="useCard">
