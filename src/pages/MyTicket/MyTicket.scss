@@ -8,6 +8,7 @@
   align-items: center;
 
   .boxWrap {
+    margin-bottom: 40px;
     padding: 30px;
     width: 420px;
     border: 1px solid $grey88;
@@ -62,7 +63,7 @@
         span {
           margin-left: 40px;
           color: $grey99;
-          font-size: 16x;
+          font-size: 16px;
         }
       }
     }
