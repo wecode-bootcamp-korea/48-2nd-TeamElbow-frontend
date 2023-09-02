@@ -1,0 +1,107 @@
+@import '../../styles/variables.scss';
+
+.myTicket.contents {
+  margin: 0 auto;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .boxWrap {
+    margin-bottom: 40px;
+    padding: 30px;
+    width: 420px;
+    border: 1px solid $grey88;
+    border-radius: 15px;
+
+    .qrWrap {
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        margin-right: 40px;
+        flex: 1;
+
+        p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+
+        .age {
+          margin-bottom: 10px;
+          padding: 5px;
+          display: inline-block;
+          background-color: yellowgreen;
+          border-radius: 5px;
+          color: $white;
+          font-size: 11px;
+        }
+
+        span {
+          display: block;
+          margin-bottom: 10px;
+          font-size: 16px;
+        }
+      }
+      .qr {
+        width: 100px;
+        height: 100px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .detailInfo {
+      p {
+        margin-bottom: 20px;
+        font-weight: 500;
+        font-size: 16px;
+
+        span {
+          margin-left: 40px;
+          color: $grey99;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .notice {
+      line-height: 1.5;
+      font-size: 15px;
+
+      p {
+        position: relative;
+        padding-left: 10px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 10px;
+          left: 0;
+          width: 4px;
+          height: 4px;
+          background-color: $black;
+          border-radius: 2px;
+        }
+
+        &.colored::before {
+          background-color: $red;
+        }
+      }
+      .colored {
+        color: $red;
+      }
+    }
+
+    .banner {
+      margin-top: 30px;
+
+      img {
+        width: 358px;
+      }
+    }
+  }
+}

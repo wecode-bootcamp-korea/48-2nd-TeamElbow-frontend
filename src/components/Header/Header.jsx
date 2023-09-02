@@ -36,7 +36,7 @@ const Header = () => {
 
   useEffect(() => {
     const checkLoginStatus = () => {
-      const isLoggedIn = !!localStorage.getItem('authToken');
+      const isLoggedIn = !!localStorage.getItem('token');
       setIsLogin(isLoggedIn);
 
       const redirectPath = sessionStorage.getItem('redirectPath');
@@ -53,7 +53,7 @@ const Header = () => {
     <div className="header">
       <div className="contents">
         <h1 className="logo" onClick={goHome}>
-          <img src="/images/logo.png" alt="씨네마 엘보우" />
+          <img src="/images/logo.png" alt="씨네마 엘보우 로고" />
         </h1>
         <ul>
           {isLogin ? (
