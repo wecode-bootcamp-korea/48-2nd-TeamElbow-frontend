@@ -18,7 +18,7 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch('http://10.58.52.212:3000/booking/pay', {
+    fetch('http://10.58.52.207:3000/booking/pay', {
       method: 'GET',
       headers: {
         authorization: localStorage.getItem('token'),
@@ -63,7 +63,7 @@ const Payments = () => {
   const completeBooking = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.212:3000/booking/pay', {
+    fetch('http://10.58.52.207:3000/booking/pay', {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

@@ -9,7 +9,7 @@ const MovieDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://10.58.52.212:3000/movies/detail?movieId=${movieId}`)
+    fetch(`http://10.58.52.207:3000/movies/detail?movieId=${movieId}`)
       .then(res => res.json())
       .then(result => setMovie(result));
   }, []);
