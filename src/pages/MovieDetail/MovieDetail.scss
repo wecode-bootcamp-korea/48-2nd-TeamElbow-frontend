@@ -53,6 +53,7 @@
         line-height: 1.5;
 
         &.spacingPhrase {
+          content: '\\n';
           white-space: pre-wrap;
         }
       }

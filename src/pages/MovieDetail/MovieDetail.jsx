@@ -5,6 +5,7 @@ import './MovieDetail.scss';
 const MovieDetail = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const realDate = movie.movieReleaseDate?.split('T')[0];
 
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const MovieDetail = () => {
           <p>등급 : {movie.movieMinimumWatchingAge} 관람가</p>
           <p>러닝타임 : {movie.movieRunningTimeMinute}분</p>
           <p>언어 : {movie.movieLanguage}</p>
-          <p>개봉일 : {movie.movieReleaseDate}</p>
+          <p>개봉일 : {realDate}</p>
           <p className="spacingPhrase">줄거리 : {movie.movieDescription}</p>
           <button
             className="btnBooking"

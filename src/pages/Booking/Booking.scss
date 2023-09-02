@@ -7,6 +7,9 @@
     border: 1px solid $grey88;
 
     .listName {
+      position: sticky;
+      top: 0;
+      background-color: $white;
       font-weight: bold;
       font-size: 18px;
       padding: 20px 0 20px 15px;
@@ -67,12 +70,17 @@
       }
 
       .selectMovieList {
+        position: relative;
+        overflow: scroll;
         width: 350px;
 
         .sortCategory {
           display: flex;
           font-size: 13px;
           padding: 15px 20px 0 20px;
+          position: sticky;
+          top: 59px;
+          background-color: $white;
 
           button {
             background-color: transparent;
