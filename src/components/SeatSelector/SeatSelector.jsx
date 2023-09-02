@@ -7,7 +7,7 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const { screeningId } = useParams();
 
   useEffect(() => {
-    fetch('http://10.58.52.212:3000/booking/seatsInformation?screeningId=1')
+    fetch('http://10.58.52.207:3000/booking/seatsInformation?screeningId=1')
       .then(res => res.json())
       .then(result => setSeatsData(result));
   }, []);
@@ -38,6 +38,8 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
     let seatClassName = 'seatBlock';
 
     if (seat.isSeatBooked && seat.seatType === 'disabled') {
+      seatClassName += ' booked';
+    } else if (seat.isSeatBooked && seat.seatType === 'common') {
       seatClassName += ' booked';
     } else if (seat.seatType === 'common') {
       seatClassName += ' common';

@@ -13,7 +13,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const movieInformation = async () => {
     const response = await fetch(
-      `http://10.58.52.212:3000/booking/movieInformation?screeningId=${screeningId}`,
+      `http://10.58.52.207:3000/booking/movieInformation?screeningId=${screeningId}`,
     );
     const result = await response.json();
     setMovie(result);
@@ -21,7 +21,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const ticketPrice = async () => {
     const response = await fetch(
-      'http://10.58.52.212:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
+      'http://10.58.52.207:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
     );
     const result = await response.json();
     setPrice(result);
