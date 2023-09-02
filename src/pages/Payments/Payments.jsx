@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Payments.scss';
 
-const ERROR_MESSAGES_MAP = {
-  NEED_ACCESS_TOKEN: '로그인이 필요합니다.',
-  INVALID_ACCESS_TOKEN: '로그인이 필요합니다.',
-};
-
 const Payments = () => {
   const { bookingId } = useParams();
   const navigate = useNavigate();
@@ -20,25 +15,14 @@ const Payments = () => {
   useEffect(() => {
     fetch('http://10.58.52.207:3000/booking/pay', {
       method: 'GET',
-      headers: {
-        authorization: localStorage.getItem('token'),
-      },
     })
       .then(res => res.json())
       .then(data => {
-        if (data.message) {
-          alert(
-            ERROR_MESSAGES_MAP[data.message] ||
-              '예상치 못한 에러가 발생했습니다.',
-          );
-          navigate('/login');
-          return;
-        }
-
         setUserInfo({
           memberPoint: data.memberPoint,
           totalPrice: data.totalPrice,
           deductionPoint: '',
+          bookingId: '',
         });
       });
   }, []);

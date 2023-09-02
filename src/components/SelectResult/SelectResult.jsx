@@ -58,16 +58,17 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
           authorization: token,
         },
         body: JSON.stringify({
-          seatId: selectedSeat,
+          seatIds: selectedSeat,
           totalPrice: calculateTotalPrice(),
-          screeningId: movie.screeningId,
+          screeningId: screeningId,
         }),
       },
     )
       .then(response => response.json())
       .then(result => {
+        console.log(result);
         if (result) {
-          navigate(`/payments?bookingId=${urlBookingId}`);
+          navigate(`/payments?bookingId=${result.bookingId}`);
         } else {
           alert('좌석을 다시 선택하세요');
         }
