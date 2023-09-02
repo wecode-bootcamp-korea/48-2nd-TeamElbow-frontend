@@ -20,7 +20,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const movieInformation = async () => {
     const response = await fetch(
-      `http://10.58.52.207:3000/booking/movieInformation?screeningId=${screeningId}`,
+      `http://10.58.52.205:3000/booking/movieInformation?screeningId=${screeningId}`,
     );
     const result = await response.json();
     setMovie(result);
@@ -28,7 +28,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const ticketPrice = async () => {
     const response = await fetch(
-      `http://10.58.52.207:3000/booking/ticketPrice?screeningId=${screeningId}`,
+      `http://10.58.52.205:3000/booking/ticketPrice?screeningId=${screeningId}`,
     );
     const result = await response.json();
     setPrice(result);
@@ -50,7 +50,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
     }
 
     fetch(
-      `http://10.58.52.207:3000/booking/pending?screeningId=${screeningId}`,
+      `http://10.58.52.205:3000/booking/pending?screeningId=${screeningId}`,
       {
         method: 'POST',
         headers: {
@@ -66,7 +66,6 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
     )
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         if (result) {
           navigate(`/payments?bookingId=${result.bookingId}`);
         } else {

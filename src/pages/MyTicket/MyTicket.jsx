@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './MyTicket.scss';
 
 const MyTicket = () => {
   const [bookings, setBookings] = useState([]);
-  const { memberId } = useParams();
+  // const { memberId } = useParams();
   const navigate = useNavigate();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const memberId = searchParams.get('bookingId');
+
   useEffect(() => {
-    fetch(`http://10.58.52.207:3000/booking/myTicket?memberId=${memberId}`, {
+    fetch(`http://10.58.52.205:3000/booking/myTicket?memberId=${memberId}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',

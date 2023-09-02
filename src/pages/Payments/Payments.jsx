@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Payments.scss';
 
 const Payments = () => {
-  const { bookingId } = useParams();
+  const token = localStorage.getItem('token');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const bookingId = searchParams.get('bookingId');
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     memberPoint: '',
@@ -13,19 +15,32 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch('http://10.58.52.207:3000/booking/pay', {
+    fetch(`http://10.58.52.205:3000/booking/pay?bookingId=${bookingId}`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
     })
       .then(res => res.json())
       .then(data => {
+        console.log(
+          data.memberPoint,
+          ': 멤버포인트',
+          data.totalPrice,
+          ': 전체금액',
+        );
         setUserInfo({
           memberPoint: data.memberPoint,
           totalPrice: data.totalPrice,
           deductionPoint: '',
           bookingId: '',
         });
+      })
+      .catch(error => {
+        console.error('API 호출 오류:', error);
       });
-  }, []);
+  }, [bookingId]);
 
   const [deductionAmount, setDeductionAmount] = useState(0);
   const [isInputValid, setIsInputValid] = useState(false);
@@ -47,14 +62,14 @@ const Payments = () => {
   const completeBooking = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.207:3000/booking/pay', {
+    fetch(`http://10.58.52.205:3000/booking/pay?bookingId=${bookingId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        bookingId: bookingId,
         totalPrice: userInfo.totalPrice,
+        authorization: token,
       }),
     })
       .then(res => res.json())

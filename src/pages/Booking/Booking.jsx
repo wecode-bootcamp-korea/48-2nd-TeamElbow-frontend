@@ -10,7 +10,7 @@ const Booking = () => {
   const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
   useEffect(() => {
-    fetch('http://10.58.52.207:3000/booking/list?sortBy=bookingRate')
+    fetch('http://10.58.52.205:3000/booking/list?sortBy=bookingRate')
       .then(res => res.json())
       .then(data => {
         setMovies(data);
@@ -29,7 +29,7 @@ const Booking = () => {
     setDateList([]);
     setTimeList([]);
 
-    fetch(`http://10.58.52.207:3000/booking/date?movieId=${id}`, {
+    fetch(`http://10.58.52.205:3000/booking/date?movieId=${id}`, {
       method: 'GET',
       header: JSON.stringify({
         movieId: id,
@@ -58,7 +58,7 @@ const Booking = () => {
 
     if (realDate) {
       fetch(
-        `http://10.58.52.207:3000/booking/schedule?movieId=${movieId}&date=${realDate}`,
+        `http://10.58.52.205:3000/booking/schedule?movieId=${movieId}&date=${realDate}`,
         {
           method: 'GET',
         },
@@ -105,8 +105,8 @@ const Booking = () => {
   //sorting
   const [activeSort, setActiveSort] = useState('bookingRate');
   const bookingRate =
-    'http://10.58.52.207:3000/booking/list?sortBy=bookingRate';
-  const alphabet = 'http://10.58.52.207:3000/booking/list?sortBy=alphabet';
+    'http://10.58.52.205:3000/booking/list?sortBy=bookingRate';
+  const alphabet = 'http://10.58.52.205:3000/booking/list?sortBy=alphabet';
   const [uri, setUri] = useState(bookingRate);
 
   const handleSort = sortType => {
@@ -129,7 +129,7 @@ const Booking = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {
     if (movieId) {
-      fetch('http://10.58.52.207:3000/booking/list?sortBy=bookingRate', {})
+      fetch('http://10.58.52.205:3000/booking/list?sortBy=bookingRate', {})
         .then(res => res.json())
         .then(data => {
           const selectedMovieInfo = data.find(
