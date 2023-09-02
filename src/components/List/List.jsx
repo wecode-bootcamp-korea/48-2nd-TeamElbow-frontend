@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './List.scss';
 
 const List = ({ movie }) => {
   const navigate = useNavigate();
+  const { movieId } = useParams();
 
   return (
     <li className="list" onClick={() => navigate(`/movie-detail/${movie.id}`)}>
@@ -25,7 +26,7 @@ const List = ({ movie }) => {
           className="btnBooking"
           onClick={e => {
             e.stopPropagation();
-            navigate('/booking');
+            navigate(`/booking?movieId=${movie.id}`);
           }}
         >
           예매하기

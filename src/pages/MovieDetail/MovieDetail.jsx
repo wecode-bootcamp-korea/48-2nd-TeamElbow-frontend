@@ -41,7 +41,7 @@ const MovieDetail = () => {
           <button
             className="btnBooking"
             onClick={() => {
-              navigate('/booking');
+              navigate(`/booking?movieId=${movieId}`);
             }}
           >
             예매하기

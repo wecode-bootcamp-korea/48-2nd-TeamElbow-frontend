@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Booking.scss';
 const Booking = () => {
