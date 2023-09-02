@@ -56,8 +56,6 @@ const Booking = () => {
     searchParams.delete('timeId');
     setSearchParams(searchParams);
 
-    setTimeList([]);
-
     if (realDate) {
       fetch(
         `http://10.58.52.212:3000/booking/schedule?movieId=${movieId}&date=${realDate}`,
@@ -82,9 +80,14 @@ const Booking = () => {
   const handleSelectTime = id => {
     searchParams.set('timeId', id);
     setSearchParams(searchParams);
+
+    if (timeId) {
+      setIsInputValid(true);
+    }
   };
 
   //좌석선택하기로 이동
+  const [isInputValid, setIsInputValid] = useState(false);
   const goToSelectSeats = e => {
     e.preventDefault();
     navigate(`/select-seats?screeningId=${timeId} `);
@@ -93,8 +96,10 @@ const Booking = () => {
   //다시 선택하기
   const handleReset = () => {
     setDateList([]);
+    setTimeList([]);
     setSelectedMovie('');
     setSearchParams('');
+    setIsInputValid(false);
   };
 
   //sorting
@@ -202,7 +207,7 @@ const Booking = () => {
               {timeList.map(item => {
                 return (
                   <div key={item.screeningId}>
-                    <p>{item.theaterName}</p>
+                    <p className="theaterName">{item.theaterName}</p>
                     <li>
                       <button
                         className={
@@ -224,6 +229,7 @@ const Booking = () => {
           <div className="selectedMovie movieListStyle">
             <p className="listName">선택내역</p>
             <div className="infoSelectMoive">
+              {!selectedMovie && <div className="info"></div>}
               {selectedMovie && (
                 <div className="info">
                   <div className="poster">
@@ -239,7 +245,11 @@ const Booking = () => {
                   </p>
                 </div>
               )}
-              <button className="goToSeatSelect" onClick={goToSelectSeats}>
+              <button
+                className="goToSeatSelect"
+                disabled={!isInputValid}
+                onClick={goToSelectSeats}
+              >
                 좌석선택하기
               </button>
             </div>
