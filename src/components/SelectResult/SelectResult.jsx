@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './SelectResult.scss';
 
 const SelectResult = ({ audienceType, counters, selectedSeat }) => {
   const token = localStorage.getItem('token');
   const [movie, setMovie] = useState({});
   const [price, setPrice] = useState({});
-  const { screeningId } = useParams();
   const bookingId = movie.bookingId;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const screeningId = searchParams.get('screeningId');
 
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const SelectResult = ({ audienceType, counters, selectedSeat }) => {
 
   const ticketPrice = async () => {
     const response = await fetch(
-      'http://10.58.52.207:3000/booking/ticketPrice?screeningId=1&seatId=1&audienceType=normal&seatId=11&audienceType=teenager',
+      `http://10.58.52.207:3000/booking/ticketPrice?screeningId=${screeningId}`,
     );
     const result = await response.json();
     setPrice(result);

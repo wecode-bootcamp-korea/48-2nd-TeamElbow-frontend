@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import './SeatSelector.scss';
 
 const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
   const [seatsData, setSeatsData] = useState([]);
-  const { screeningId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const screeningId = searchParams.get('screeningId');
 
   useEffect(() => {
-    fetch('http://10.58.52.207:3000/booking/seatsInformation?screeningId=1')
+    fetch(
+      `http://10.58.52.207:3000/booking/seatsInformation?screeningId=${screeningId}`,
+    )
       .then(res => res.json())
       .then(result => setSeatsData(result));
   }, []);
