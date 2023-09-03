@@ -20,7 +20,7 @@ const LogIn = () => {
   const handleLogin = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.205:3000/member/signin', {
+    fetch('http://172.30.72.116:3000/member/signin', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

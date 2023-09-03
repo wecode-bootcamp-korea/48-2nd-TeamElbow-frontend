@@ -9,7 +9,7 @@ const SeatSelector = ({ selectedSeat, setSelectedSeat, totalCount }) => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.205:3000/booking/seatsInformation?screeningId=${screeningId}`,
+      `http://172.30.72.116:3000/booking/seatsInformation?screeningId=${screeningId}`,
     )
       .then(res => res.json())
       .then(result => setSeatsData(result));

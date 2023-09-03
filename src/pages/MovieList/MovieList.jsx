@@ -6,7 +6,7 @@ const MovieList = () => {
   const [activeSort, setActiveSort] = useState('bookingRate');
   const [movieList, setMovieList] = useState([]);
 
-  const API = `http://10.58.52.205:3000/movies/list?sortBy=${activeSort}`;
+  const API = `http://172.30.72.116:3000/movies/list?sortBy=${activeSort}`;
 
   const handleSortClick = sortType => {
     setActiveSort(sortType);

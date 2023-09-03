@@ -4,14 +4,10 @@ import './MyTicket.scss';
 
 const MyTicket = () => {
   const [bookings, setBookings] = useState([]);
-  // const { memberId } = useParams();
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const memberId = searchParams.get('bookingId');
-
   useEffect(() => {
-    fetch(`http://10.58.52.205:3000/booking/myTicket?memberId=${memberId}`, {
+    fetch('http://172.30.72.116:3000/booking/myTicket', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -21,7 +17,6 @@ const MyTicket = () => {
       .then(res => res.json())
       .then(result => {
         if (result && result.length > 0) {
-          console.log(result);
           setBookings(result);
         } else {
           alert('예매 내역이 없습니다.');

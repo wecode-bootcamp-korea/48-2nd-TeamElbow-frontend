@@ -15,7 +15,7 @@ const Payments = () => {
   });
 
   useEffect(() => {
-    fetch(`http://10.58.52.205:3000/booking/pay?bookingId=${bookingId}`, {
+    fetch(`http://172.30.72.116:3000/booking/pay?bookingId=${bookingId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -24,12 +24,6 @@ const Payments = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(
-          data.memberPoint,
-          ': 멤버포인트',
-          data.totalPrice,
-          ': 전체금액',
-        );
         setUserInfo({
           memberPoint: data.memberPoint,
           totalPrice: data.totalPrice,
@@ -44,12 +38,12 @@ const Payments = () => {
 
   const [deductionAmount, setDeductionAmount] = useState(0);
   const [isInputValid, setIsInputValid] = useState(false);
-  const point = parseFloat(userInfo.deductionPoint);
-  const totalPrice = parseFloat(userInfo.totalPrice);
+  const point = parseInt(userInfo.deductionPoint);
+  const totalPrice = parseInt(userInfo.totalPrice);
   const handleInputPoint = e => {
     e.preventDefault();
     const inputValue = e.target.value;
-    const inputPoint = parseFloat(inputValue) || 0;
+    const inputPoint = parseInt(inputValue) || 0;
     setDeductionAmount(inputPoint);
 
     if (inputPoint === totalPrice) {
@@ -62,19 +56,22 @@ const Payments = () => {
   const completeBooking = e => {
     e.preventDefault();
 
-    fetch(`http://10.58.52.205:3000/booking/pay?bookingId=${bookingId}`, {
+    fetch(`http://172.30.72.116:3000/booking/pay?bookingId=${bookingId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
+        authorization: token,
       },
       body: JSON.stringify({
-        totalPrice: userInfo.totalPrice,
-        authorization: token,
+        totalPrice: deductionAmount,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        console.log('결제성공:', result);
+        if (result.message === 'payment already confirmed') {
+          alert('이미 결제가 완료된 좌석입니다.');
+        }
+
         navigate('/my-ticket');
       });
   };
