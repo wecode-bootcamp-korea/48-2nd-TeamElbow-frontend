@@ -9,6 +9,7 @@ const Booking = () => {
   //영화선택
   const [movies, setMovies] = useState([]);
   const movieId = searchParams.get('movieId');
+
   useEffect(() => {
     fetch('http://172.30.72.116:3000/booking/list?sortBy=bookingRate')
       .then(res => res.json())
@@ -16,6 +17,26 @@ const Booking = () => {
         setMovies(data);
       });
   }, []);
+
+  useEffect(() => {
+    if (movieId) {
+      showMovieDates(movieId);
+    }
+  }, [movieId]);
+
+  const showMovieDates = movieId => {
+    fetch(`http://172.30.72.116:3000/booking/date?movieId=${movieId}`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(result => {
+        setDateList(result);
+      })
+      .catch(error => {
+        console.error(error);
+        setDateList([]);
+      });
+  };
 
   const handleSelect = id => {
     searchParams.set('movieId', id);
@@ -234,11 +255,10 @@ const Booking = () => {
                   </div>
                   <p className="movieTitle">{selectedMovie.movieTitle}</p>
                   <p className="movieInfo">
-                    {selectedMovie.movieMinimumWatchingAge} 관람가
+                    등급 : {selectedMovie.movieMinimumWatchingAge} 관람가
                   </p>
                   <p className="movieInfo">
-                    상영시간
-                    {selectedMovie.movieRunningTimeMinute}분
+                    러닝타임 :{selectedMovie.movieRunningTimeMinute}분
                   </p>
                 </div>
               )}
